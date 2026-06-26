@@ -1,0 +1,386 @@
+.section {
+  padding: 100px 20px;
+  background-color: #f4f6f9;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 230, 118, 0.1);
+  color: #00e676; /* Accent green */
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badgeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: -0.02em;
+  color: #111;
+}
+
+.highlight {
+  color: #1a73e8;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  align-items: stretch;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeaderArea {
+  padding: 50px 30px 40px;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.cardDark .cardHeaderArea {
+  background: #3c4655; /* Slate grey */
+}
+
+.cardAccent .cardHeaderArea {
+  background: linear-gradient(135deg, #0ba360 0%, #17c784 100%);
+}
+
+.cardPurple .cardHeaderArea {
+  background: linear-gradient(135deg, #6a1b9a 0%, #902cf6 100%);
+}
+
+.popularBadge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff8c00;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 20px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(255, 140, 0, 0.3);
+}
+
+.cardIcon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.planName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.price {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.currency {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.duration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.9;
+  text-transform: uppercase;
+}
+
+.cardBodyArea {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+  background: white;
+}
+
+.referenceBlock {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+}
+
+.refIconWrapper {
+  margin-right: 15px;
+}
+
+.refInfo {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.refTitle {
+  font-weight: 700;
+  color: #111;
+  font-size: 0.9rem;
+}
+
+.refSub {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.refValues {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.refPrice {
+  font-weight: 700;
+  color: #111;
+  font-size: 1rem;
+}
+
+.refDrop {
+  font-size: 0.85rem;
+  color: #e53935;
+  font-weight: 700;
+}
+
+.blockTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.rangeBlock {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.rangeRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rangeCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.rangeCol:last-child {
+  align-items: flex-end;
+}
+
+.rangeLabel {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.rangeValue {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.referralBlock {
+  background: #f4f6ff; /* Light blue */
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.referralBlock .blockTitle {
+  color: #283593; /* Darker blue */
+}
+
+.referralValue {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #3949ab;
+  letter-spacing: 2px;
+}
+
+.principalBlock {
+  background: #e8f5e9; /* Light green */
+  color: #2e7d32; /* Darker green */
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: 1px solid #c8e6c9;
+}
+
+.btnOutline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px;
+  background: white;
+  border: 1px solid #d0d0d0;
+  color: #333;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: auto;
+}
+
+.btnOutline:hover {
+  background: #f0f0f0;
+}
+
+.btnAccent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px;
+  background: #0ba360;
+  border: none;
+  color: white;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: auto;
+  box-shadow: 0 4px 15px rgba(11, 163, 96, 0.3);
+}
+
+.btnAccent:hover {
+  background: #098850;
+}
+
+.btnPurple {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px;
+  background: #902cf6;
+  border: none;
+  color: white;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: auto;
+  box-shadow: 0 4px 15px rgba(144, 44, 246, 0.3);
+}
+
+.btnPurple:hover {
+  background: #7b24d4;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 15px;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+  .header {
+    margin-bottom: 40px;
+  }
+  .price {
+    font-size: 3rem;
+  }
+  .cardBodyArea {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,458 @@
+.contactWrapper {
+  background-color: #ffffff;
+  font-family: var(--font-inter), sans-serif;
+  color: #111827;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.containerSmall {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* SECTION 1: Multiple Ways to Connect */
+.section {
+  padding: 6rem 0;
+  background-color: #ffffff;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(17, 75, 61, 0.1);
+  color: #114b3d;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.badgeGrey {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f1f5f9;
+  color: #334155;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.titleLeft {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.highlight {
+  color: #114b3d;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #4b5563;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.contactCard {
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.contactCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+
+.highlightCard {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.iconWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.greenIcon { background: #10b981; color: white; }
+.orangeIcon { background: #f59e0b; color: white; }
+.blueIcon { background: #475569; color: white; }
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.cardDesc {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.cardActionAreaGreen {
+  background: #d1fae5;
+  color: #047857;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.cardActionAreaOrange {
+  background: #fef3c7;
+  color: #b45309;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.cardActionAreaGrey {
+  background: #f1f5f9;
+  color: #334155;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #10b981;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.cardFooterOrange {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #f59e0b;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.cardFooterGrey {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* SECTION 2: Visit Our Office */
+.officeSection {
+  padding: 6rem 0;
+  background-color: #fafafa;
+}
+
+.officeLayout {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.officeInfo {
+  flex: 1;
+}
+
+.officeDesc {
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.locationCards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.locCard {
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.locIcon {
+  width: 40px;
+  height: 40px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.locText {
+  display: flex;
+  flex-direction: column;
+}
+
+.locLabel {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.locValue {
+  font-size: 1rem;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.officeMap {
+  flex: 1;
+}
+
+.mapContainer {
+  background: white;
+  padding: 1rem;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.mapPlaceholder {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 400px;
+}
+
+.mapImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.mapOverlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(248, 250, 252, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mapPin {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(-20px);
+}
+
+.pinDot {
+  width: 20px;
+  height: 20px;
+  background: #10b981;
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.pinCard {
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pinCard strong {
+  color: #1e293b;
+  font-size: 0.95rem;
+}
+
+.pinCard span {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+/* SECTION 3: Send Us a Message */
+.formSection {
+  padding: 6rem 0;
+  background-color: #ffffff;
+}
+
+.formContainer {
+  background: #ffffff;
+  padding: 3rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputGroup label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  color: #94a3b8;
+  font-size: 1.1rem;
+}
+
+.inputWrapper input {
+  width: 100%;
+  padding: 1.2rem 1rem 1.2rem 3rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #1e293b;
+  background: #f8fafc;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.inputWrapper input:focus {
+  background: white;
+  border-color: #3bd1d3;
+  box-shadow: 0 0 0 4px rgba(59, 209, 211, 0.1);
+}
+
+.inputGroup textarea {
+  width: 100%;
+  padding: 1.2rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #1e293b;
+  background: #f8fafc;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.inputGroup textarea:focus {
+  background: white;
+  border-color: #3bd1d3;
+  box-shadow: 0 0 0 4px rgba(59, 209, 211, 0.1);
+}
+
+.submitBtn {
+  background: linear-gradient(135deg, #3bd1d3 0%, #2bbbc0 100%);
+  color: #080811;
+  border: none;
+  padding: 1.2rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59, 209, 211, 0.3);
+}
+
+@media (max-width: 900px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .officeLayout {
+    flex-direction: column;
+  }
+  
+  .titleLeft {
+    text-align: center;
+  }
+  
+  .officeDesc {
+    text-align: center;
+  }
+  
+  .badgeGrey {
+    margin: 0 auto 1.5rem auto;
+    display: flex;
+    width: fit-content;
+  }
+}

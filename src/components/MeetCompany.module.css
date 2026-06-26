@@ -1,0 +1,220 @@
+.section {
+  padding: 100px 20px;
+  background: linear-gradient(180deg, #080811 0%, #0d0d1a 100%);
+  font-family: var(--font-inter), sans-serif;
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 70px;
+}
+
+/* ── Left: Visuals ── */
+.visuals {
+  flex: 1;
+  position: relative;
+  padding: 40px 0;
+}
+
+.mainImageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 350px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 8, 17, 0) 40%, rgba(8, 8, 17, 0.6) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.statCardTop {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 18px 25px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.statCardBottom {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 18px 25px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.statNumber {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #3bd1d3;
+}
+
+.statText {
+  font-size: 0.8rem;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* ── Right: Content ── */
+.content {
+  flex: 1;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(59, 209, 211, 0.12);
+  color: #3bd1d3;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+
+.badgeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.highlight {
+  color: #3bd1d3;
+}
+
+.description {
+  font-size: 1rem;
+  color: #a0a0a0;
+  line-height: 1.7;
+  margin-bottom: 35px;
+}
+
+.statsRow {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 35px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.statVal {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 500;
+}
+
+.ctaBtn {
+  background: linear-gradient(135deg, #3bd1d3 0%, #2bbbc0 100%);
+  color: #080811;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(59, 209, 211, 0.25);
+}
+
+.ctaBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(59, 209, 211, 0.4);
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .statsRow {
+    justify-content: center;
+  }
+
+  .statCardTop {
+    top: -10px;
+    left: 0;
+  }
+
+  .statCardBottom {
+    bottom: -10px;
+    right: 0;
+  }
+
+  .visuals {
+    width: 100%;
+    padding: 20px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 15px;
+  }
+  .title {
+    font-size: 1.6rem;
+  }
+  .statVal {
+    font-size: 1.2rem;
+  }
+  .statsRow {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}

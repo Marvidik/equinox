@@ -1,0 +1,776 @@
+/* Layout & Reset */
+.dashboardLayout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: var(--font-inter), sans-serif;
+  color: #1f2937;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background-color: #0B131F;
+  /* Deep Slate Navy */
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.logoText {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.closeSidebarBtn {
+  display: none;
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.menuSection {
+  margin-bottom: 2.5rem;
+}
+
+.menuTitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #475569;
+  /* Subtle Slate Gray */
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  color: #64748B;
+  /* Muted Slate Gray */
+  text-decoration: none;
+  border-radius: 8px;
+  /* Subtle border radius */
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.navIcon {
+  color: inherit;
+  transition: transform 0.2s ease-in-out;
+}
+
+.navLink:hover {
+  background-color: rgba(23, 34, 55, 0.5);
+  /* #172237 at 50% opacity */
+  color: #FFFFFF;
+}
+
+.navLink:hover .navIcon {
+  transform: translateX(2px) scale(1.05);
+  /* Shift 2px right and scale up slightly */
+}
+
+.navLink.active {
+  background-color: #172237;
+  /* Lighter slate navy */
+  color: #FFFFFF;
+  font-weight: 700;
+  border-left: 3px solid #2CD4D1;
+  /* Sharp vertical accent bar */
+}
+
+.navLink.active .navIcon {
+  color: #2CD4D1;
+  transform: none;
+  /* Disable shift when active */
+}
+
+/* Mobile Hamburger */
+.mobileHamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Main Area */
+.mainArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-bottom: 2rem;
+  padding-top: 0; /* Override global main { padding-top } */
+}
+
+/* Header */
+.header {
+  height: 80px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* Ensure strict sticky positioning at the top */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.headerLeft {
+  flex: 1;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.profile:hover {
+  background: #f3f4f6;
+}
+
+.avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #e5e7eb;
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.profileName {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.profileEmail {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Dashboard Content */
+.content {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Welcome */
+.welcomeSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.welcomeTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #111827;
+  letter-spacing: -0.02em;
+}
+
+.welcomeSub {
+  color: #6b7280;
+  font-size: 1.05rem;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.withdrawBtn,
+.depositBtn {
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.withdrawBtn {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+.withdrawBtn:hover {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.depositBtn {
+  background: linear-gradient(135deg, #3bd1d3 0%, #2bbbc0 100%);
+  color: #080811;
+  border: none;
+  box-shadow: 0 4px 15px rgba(59, 209, 211, 0.3);
+}
+
+.depositBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 209, 211, 0.4);
+}
+
+/* Stats */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.statCard {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+
+.statCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.statIconWrapper {
+  width: 48px;
+  height: 48px;
+  background-color: rgba(59, 209, 211, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.statHeader {
+  color: #6b7280;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.statBody {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.statValue {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.02em;
+}
+
+.statBadgeSuccess {
+  background-color: #ecfdf5;
+  color: #059669;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.statBadgeDanger {
+  background-color: #fef2f2;
+  color: #dc2626;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* Charts Grid */
+.chartsGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+.analyticsCard,
+.detailsCard {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.cardHeader h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.liveChartArea {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: #ffffff;
+  /* White background requested */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Details Card */
+.tabHeader {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+.tabHeader button {
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.tabHeader .activeTab {
+  color: #3bd1d3;
+}
+
+.tabHeader .activeTab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #3bd1d3;
+}
+
+.donutMockup {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  background: radial-gradient(circle, transparent 60%, rgba(59, 209, 211, 0.1) 60%), conic-gradient(#3bd1d3 0% 60%, #10b981 60% 85%, #ef4444 85% 100%);
+  border-radius: 50%;
+  width: 200px;
+  margin: 0 auto 1.5rem;
+}
+
+.donutCenter {
+  width: 140px;
+  height: 140px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.donutLabel {
+  font-size: 0.85rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.donutValue {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.assetList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.assetItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.assetItem:hover {
+  background: #f9fafb;
+}
+
+.assetBrand {
+  width: 40px;
+  height: 40px;
+  background: #f3f4f6;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #374151;
+}
+
+.assetName {
+  flex: 1;
+  font-weight: 700;
+  color: #111827;
+}
+
+.assetPrice {
+  font-weight: 700;
+  color: #374151;
+}
+
+.successText {
+  color: #059669;
+  font-weight: 600;
+}
+
+.dangerText {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* Bottom Grid */
+.bottomGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+.marketCard {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+.emptyPlanState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  border: 1px dashed #d1d5db;
+}
+
+.emptyPlanIcon {
+  width: 80px;
+  height: 80px;
+  background-color: #f3f4f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.emptyPlanText {
+  color: #6b7280;
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+}
+
+.buyPlanBtn {
+  background-color: #3bd1d3;
+  /* Cyan brand color */
+  color: #080811;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(59, 209, 211, 0.3);
+}
+
+.buyPlanBtn:hover {
+  background-color: #2bbbc0;
+  transform: translateY(-2px);
+}
+
+/* Referral Card */
+.referralCard {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.referralHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.referralIcon {
+  width: 48px;
+  height: 48px;
+  background-color: rgba(59, 209, 211, 0.1);
+  color: #3bd1d3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.referralHeader h3 {
+  font-size: 1.15rem;
+  color: #111827;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+}
+
+.referralHeader p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.referralInputGroup {
+  background: #f9fafb;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+.referralInputGroup label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.copyBox {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.copyBox input {
+  flex: 1;
+  padding: 0.85rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+  color: #374151;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.copyBtn {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 0 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: #4b5563;
+}
+
+.copyBtn:hover {
+  background: #e5e7eb;
+}
+
+.commissionBanner {
+  background-color: #3bd1d3;
+  color: #080811;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(59, 209, 211, 0.3);
+}
+
+.comLabel {
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+}
+
+.comValue {
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.comIcon {
+  font-size: 2rem;
+  opacity: 0.8;
+  font-weight: 800;
+}
+
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chartsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bottomGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobileHamburger {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: -260px;
+    z-index: 1000;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebarOpen {
+    left: 0;
+  }
+
+  .closeSidebarBtn {
+    display: block;
+  }
+
+  .header {
+    padding: 0 1rem;
+    justify-content: space-between;
+  }
+
+  .headerLeft {
+    display: flex;
+    align-items: center;
+  }
+
+  .welcomeSection {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .actionButtons {
+    width: 100%;
+  }
+
+  .withdrawBtn,
+  .depositBtn {
+    flex: 1;
+    text-align: center;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .content {
+    padding: 1.5rem 1rem;
+  }
+
+  .liveChartArea {
+    height: 300px;
+  }
+}

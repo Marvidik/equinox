@@ -1,0 +1,110 @@
+.page {
+  padding: 2.5rem 2.5rem 3rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.tableCard {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  overflow: hidden;
+}
+
+.cardHeader {
+  padding: 1.5rem 1.75rem;
+}
+
+.headerTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+}
+
+.planCount {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #9ca3af;
+  background: #f3f4f6;
+  padding: 0.15rem 0.6rem;
+  border-radius: 50px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.table thead th {
+  padding: 1rem 1.75rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #374151;
+  border-top: 1px solid #f9fafb;
+  border-bottom: 1px solid #f9fafb;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #f9fafb;
+  transition: background 0.15s;
+}
+
+.table tbody tr:hover { background: #fafafa; }
+.table tbody tr:last-child { border-bottom: none; }
+
+.table tbody td {
+  padding: 1.1rem 1.75rem;
+  color: #374151;
+  vertical-align: middle;
+  font-weight: 600;
+}
+
+.planName { color: #4b5563 !important; }
+.planAmount { color: #111827 !important; font-weight: 700 !important; }
+.planProfit { color: #059669 !important; font-weight: 700 !important; }
+
+.statusBadge {
+  display: inline-block;
+  padding: 0.25rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(5,150,105,0.12);
+  color: #059669;
+}
+
+.reinvestCheck {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #059669;
+}
+
+.emptyCell {
+  text-align: center !important;
+  padding: 3rem !important;
+  color: #6b7280 !important;
+  font-weight: 400 !important;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .page { padding: 1.25rem 1rem; }
+  .cardHeader { padding: 1.25rem; }
+  .table thead th, .table tbody td { padding: 0.875rem 1.25rem; }
+}
