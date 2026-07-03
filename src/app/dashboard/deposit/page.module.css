@@ -574,7 +574,10 @@
   .payActions { flex-direction: column; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+  .leftPanel, .rightPanel, .payLeft, .payRight, .amountCard {
+    padding: 1.25rem;
+  }
   .bigAmountField {
     flex-direction: column;
     border-radius: 12px;

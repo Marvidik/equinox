@@ -401,3 +401,23 @@
   .page { padding: 1.25rem 1rem 2rem; }
   .detailGrid { grid-template-columns: 1fr 1fr; }
 }
+
+@media (max-width: 600px) {
+  .leftPanel, .rightPanel, .amountCard, .detailsCard {
+    padding: 1.25rem;
+  }
+  .detailGrid { grid-template-columns: 1fr; }
+  .bigAmountField {
+    flex-direction: column;
+    border-radius: 12px;
+  }
+  .bigCurrencySymbol {
+    border-right: none;
+    border-bottom: 2px solid #e2e8f0;
+    width: 100%;
+    text-align: center;
+  }
+  .bigAmountField input {
+    text-align: center;
+  }
+}
