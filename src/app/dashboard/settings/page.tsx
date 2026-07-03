@@ -1,18 +1,22 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './page.module.css';
+import { COUNTRIES } from '@/lib/countries';
+import { authService } from '@/services/authService';
+import StatusModal from '@/components/StatusModal';
 
 type Tab = 'personal' | 'withdrawal' | 'password' | 'other';
-import { COUNTRIES } from '@/lib/countries';
 
 export default function SettingsPage() {
   const [tab, setTab] = useState<Tab>('personal');
+  const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState({ isOpen: false, type: 'success' as 'success' | 'error', title: '', message: '' });
 
   /* ── Personal ── */
-  const [fullname, setFullname]   = useState('Fernando');
-  const [email, setEmail]         = useState('savvybittechnology@gmail.com');
-  const [phone, setPhone]         = useState('+15454545454');
-  const [country, setCountry]     = useState('Spain');
+  const [fullname, setFullname]   = useState('');
+  const [email, setEmail]         = useState('');
+  const [phone, setPhone]         = useState('');
+  const [country, setCountry]     = useState('');
   const [address, setAddress]     = useState('');
   const [pSaved, setPSaved]       = useState(false);
 
@@ -40,42 +44,135 @@ export default function SettingsPage() {
 
   /* ── Other ── */
   const [otpEmail, setOtpEmail]     = useState(true);
-  const [profitEmail, setProfitEmail] = useState(true);
+  const [profitEmail, setProfitEmail] = useState(false);
   const [planEmail, setPlanEmail]   = useState(true);
   const [oSaved, setOSaved]         = useState(false);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { user } = authService.getSession();
+        if (user) {
+          setFullname(user.full_name || '');
+          setEmail(user.email || '');
+          setPhone(user.phone || '');
+          setCountry(user.country || '');
+          setAddress(user.address || '');
+        }
+
+        const withdrawData = await authService.getWithdrawalInfo();
+        if (withdrawData) {
+          const info = Array.isArray(withdrawData) ? withdrawData[0] : withdrawData;
+          if (info) {
+            setBankName(info.bank_name || '');
+            setAccName(info.account_name || '');
+            setAccNum(info.account_number || '');
+            setSwift(info.swift_code || '');
+            setBtc(info.bitcoin_address || '');
+            setEth(info.ethereum_address || '');
+            setLtc(info.litecoin_address || '');
+            setUsdt(info.usdt_trc20_address || '');
+          }
+        }
+
+        const settingsData = await authService.getOtherSettings();
+        if (settingsData) {
+          const s = Array.isArray(settingsData) ? settingsData[0] : settingsData;
+          if (s) {
+            setOtpEmail(s.send_otp_on_withdrawal ?? true);
+            setProfitEmail(s.notify_on_profit ?? false);
+            setPlanEmail(s.notify_on_plan_expiry ?? true);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch settings data:", err);
+      }
+    };
+    fetchData();
+  }, []);
+
   const savePersonal = async () => {
-    setPSaved(false);
-    await new Promise(r => setTimeout(r, 800));
-    setPSaved(true);
-    setTimeout(() => setPSaved(false), 3000);
+    setLoading(true);
+    try {
+      await authService.updateProfile({
+        full_name: fullname,
+        phone,
+        country,
+        address
+      });
+      const { token, user } = authService.getSession();
+      authService.setSession(token!, { ...user, full_name: fullname, phone, country, address });
+      setPSaved(true);
+      setTimeout(() => setPSaved(false), 3000);
+    } catch (err: any) {
+      setModal({ isOpen: true, type: 'error', title: 'Update Failed', message: err.message || 'Failed to update profile.' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const saveWithdrawal = async () => {
-    setWSaved(false);
-    await new Promise(r => setTimeout(r, 800));
-    setWSaved(true);
-    setTimeout(() => setWSaved(false), 3000);
+    setLoading(true);
+    try {
+      await authService.createWithdrawalInfo({
+        bank_name: bankName,
+        account_name: accName,
+        account_number: accNum,
+        swift_code: swift,
+        bitcoin_address: btc,
+        ethereum_address: eth,
+        litecoin_address: ltc,
+        usdt_trc20_address: usdt
+      });
+      setWSaved(true);
+      setTimeout(() => setWSaved(false), 3000);
+    } catch (err: any) {
+      setModal({ isOpen: true, type: 'error', title: 'Update Failed', message: err.message || 'Failed to update withdrawal info.' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const savePassword = async (e: React.FormEvent) => {
     e.preventDefault();
     setPassErr('');
-    if (newPass.length < 8) { setPassErr('New password must be at least 8 characters.'); return; }
+    if (newPass.length < 6) { setPassErr('New password must be at least 6 characters.'); return; }
     if (newPass !== confirmPass) { setPassErr('Passwords do not match.'); return; }
     setPassLoading(true);
-    await new Promise(r => setTimeout(r, 1000));
-    setPassLoading(false);
-    setPassSaved(true);
-    setOldPass(''); setNewPass(''); setConfirmPass('');
-    setTimeout(() => setPassSaved(false), 3000);
+    try {
+      await authService.changePassword({
+        old_password: oldPass,
+        new_password: newPass
+      });
+      setPassSaved(true);
+      setOldPass(''); setNewPass(''); setConfirmPass('');
+      setTimeout(() => setPassSaved(false), 3000);
+    } catch (err: any) {
+      setPassErr(err.message || 'Failed to update password.');
+    } finally {
+      setPassLoading(false);
+    }
   };
 
   const saveOther = async () => {
-    setOSaved(false);
-    await new Promise(r => setTimeout(r, 600));
-    setOSaved(true);
-    setTimeout(() => setOSaved(false), 3000);
+    setLoading(true);
+    try {
+      await authService.updateOtherSettings({
+        send_otp_on_withdrawal: otpEmail,
+        notify_on_profit: profitEmail,
+        notify_on_plan_expiry: planEmail
+      });
+      setOSaved(true);
+      setTimeout(() => setOSaved(false), 3000);
+    } catch (err: any) {
+      setModal({ isOpen: true, type: 'error', title: 'Update Failed', message: err.message || 'Failed to update settings.' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleLogout = () => {
+    authService.logout();
   };
 
   const EyeIcon = ({ show, toggle }: { show: boolean; toggle: () => void }) => (
@@ -110,7 +207,6 @@ export default function SettingsPage() {
 
   return (
     <div className={styles.page}>
-      {/* Header */}
       <div className={styles.pageHeader}>
         <div className={styles.headerBadge}>
           <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -123,9 +219,7 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      {/* Card */}
       <div className={styles.card}>
-        {/* Tab nav */}
         <nav className={styles.tabNav}>
           {tabs.map(t => (
             <button
@@ -139,9 +233,7 @@ export default function SettingsPage() {
           ))}
         </nav>
 
-        {/* Content */}
         <div className={styles.tabBody}>
-
           {/* ── PERSONAL ── */}
           {tab === 'personal' && (
             <div className={styles.section}>
@@ -156,7 +248,7 @@ export default function SettingsPage() {
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Email Address</label>
-                  <input className={styles.input} type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Enter email address" />
+                  <input className={styles.input} type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Enter email address" disabled />
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Phone Number</label>
@@ -166,6 +258,7 @@ export default function SettingsPage() {
                   <label className={styles.label}>Country</label>
                   <div className={styles.selectWrap}>
                     <select className={styles.select} value={country} onChange={e => setCountry(e.target.value)}>
+                      <option value="">Select country</option>
                       {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
                     </select>
                     <svg className={styles.selectChevron} width="16" height="16" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
@@ -177,13 +270,10 @@ export default function SettingsPage() {
                 <textarea className={styles.textarea} value={address} onChange={e => setAddress(e.target.value)} placeholder="Enter your full address" rows={3} />
               </div>
               <div className={styles.actionRow}>
-                <button className={styles.saveBtn} onClick={savePersonal}>
-                  {pSaved
-                    ? <><svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Saved!</>
-                    : 'Update Profile'
-                  }
+                <button className={styles.saveBtn} onClick={savePersonal} disabled={loading}>
+                  {pSaved ? <><svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Saved!</> : loading ? 'Updating...' : 'Update Profile'}
                 </button>
-                <button className={styles.logoutBtn} onClick={() => window.location.href = '/'}>
+                <button className={styles.logoutBtn} onClick={handleLogout}>
                   <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
                   </svg>
@@ -200,7 +290,6 @@ export default function SettingsPage() {
                 <h2>Withdrawal Settings</h2>
                 <p>Set up your bank and crypto wallet details for withdrawals.</p>
               </div>
-
               <div className={styles.subSection}>
                 <div className={styles.subSectionLabel}>
                   <svg width="16" height="16" fill="none" stroke="#6b7280" strokeWidth="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
@@ -235,32 +324,24 @@ export default function SettingsPage() {
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Bitcoin (BTC)</label>
                     <input className={styles.input} value={btc} onChange={e => setBtc(e.target.value)} placeholder="Enter Bitcoin address" />
-                    <p className={styles.hint}>Your Bitcoin address for withdrawals</p>
                   </div>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Ethereum (ETH)</label>
                     <input className={styles.input} value={eth} onChange={e => setEth(e.target.value)} placeholder="Enter Ethereum address" />
-                    <p className={styles.hint}>Your Ethereum address for withdrawals</p>
                   </div>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Litecoin (LTC)</label>
                     <input className={styles.input} value={ltc} onChange={e => setLtc(e.target.value)} placeholder="Enter Litecoin address" />
-                    <p className={styles.hint}>Your Litecoin address for withdrawals</p>
                   </div>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>USDT (TRC20)</label>
                     <input className={styles.input} value={usdt} onChange={e => setUsdt(e.target.value)} placeholder="Enter USDT TRC20 address" />
-                    <p className={styles.hint}>Your USDT TRC20 wallet for withdrawals</p>
                   </div>
                 </div>
               </div>
-
               <div className={styles.actionRow}>
-                <button className={styles.saveBtn} onClick={saveWithdrawal}>
-                  {wSaved
-                    ? <><svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Saved!</>
-                    : 'Save Settings'
-                  }
+                <button className={styles.saveBtn} onClick={saveWithdrawal} disabled={loading}>
+                  {wSaved ? <><svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Saved!</> : loading ? 'Saving...' : 'Save Settings'}
                 </button>
               </div>
             </div>
@@ -273,37 +354,28 @@ export default function SettingsPage() {
                 <h2>Password &amp; Security</h2>
                 <p>Keep your account safe by using a strong, unique password.</p>
               </div>
-
               <div className={styles.passwordCard}>
                 <div className={styles.securityTip}>
-                  <svg width="18" height="18" fill="none" stroke="#3b82f6" strokeWidth="2" viewBox="0 0 24 24">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  </svg>
+                  <svg width="18" height="18" fill="none" stroke="#3b82f6" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                   <div>
                     <p className={styles.tipTitle}>Security Tips</p>
-                    <p className={styles.tipBody}>Use at least 8 characters with a mix of letters, numbers, and symbols. Avoid using personal information.</p>
+                    <p className={styles.tipBody}>Use at least 8 characters with a mix of letters, numbers, and symbols.</p>
                   </div>
                 </div>
-
                 <form onSubmit={savePassword}>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>Current Password</label>
                     <div className={styles.passField}>
-                      <svg width="17" height="17" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                      </svg>
+                      <svg width="17" height="17" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                       <input type={showOld ? 'text' : 'password'} placeholder="Enter your current password" value={oldPass} onChange={e => setOldPass(e.target.value)} required />
                       <EyeIcon show={showOld} toggle={() => setShowOld(s => !s)} />
                     </div>
                   </div>
-
                   <div className={styles.grid2}>
                     <div className={styles.formGroup}>
                       <label className={styles.label}>New Password</label>
                       <div className={styles.passField}>
-                        <svg width="17" height="17" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24">
-                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        </svg>
+                        <svg width="17" height="17" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                         <input type={showNew ? 'text' : 'password'} placeholder="Enter new password" value={newPass} onChange={e => { setNewPass(e.target.value); setPassErr(''); }} required />
                         <EyeIcon show={showNew} toggle={() => setShowNew(s => !s)} />
                       </div>
@@ -311,40 +383,26 @@ export default function SettingsPage() {
                     <div className={styles.formGroup}>
                       <label className={styles.label}>Confirm New Password</label>
                       <div className={styles.passField}>
-                        <svg width="17" height="17" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24">
-                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        </svg>
+                        <svg width="17" height="17" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                         <input type={showCon ? 'text' : 'password'} placeholder="Confirm new password" value={confirmPass} onChange={e => { setConfirmPass(e.target.value); setPassErr(''); }} required />
                         <EyeIcon show={showCon} toggle={() => setShowCon(s => !s)} />
                       </div>
                     </div>
                   </div>
-
                   {passErr && (
                     <div className={styles.errorBox}>
-                      <svg width="16" height="16" fill="none" stroke="#ef4444" strokeWidth="2" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-                      </svg>
+                      <svg width="16" height="16" fill="none" stroke="#ef4444" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                       {passErr}
                     </div>
                   )}
-
                   {passSaved && (
                     <div className={styles.successBox}>
-                      <svg width="16" height="16" fill="none" stroke="#059669" strokeWidth="2.5" viewBox="0 0 24 24">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
+                      <svg width="16" height="16" fill="none" stroke="#059669" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                       Password updated successfully!
                     </div>
                   )}
-
                   <div className={styles.actionRow}>
-                    <button type="submit" className={styles.saveBtn} disabled={passLoading}>
-                      {passLoading
-                        ? <><span className={styles.spinner}/> Updating…</>
-                        : 'Update Password'
-                      }
-                    </button>
+                    <button type="submit" className={styles.saveBtn} disabled={passLoading}>{passLoading ? 'Updating…' : 'Update Password'}</button>
                   </div>
                 </form>
               </div>
@@ -358,7 +416,6 @@ export default function SettingsPage() {
                 <h2>Notification Preferences</h2>
                 <p>Control which email notifications you want to receive.</p>
               </div>
-
               <div className={styles.toggleList}>
                 <div className={styles.toggleItem}>
                   <div className={styles.toggleInfo}>
@@ -366,64 +423,41 @@ export default function SettingsPage() {
                     <p className={styles.toggleDesc}>Send confirmation OTP to my email when withdrawing my funds.</p>
                   </div>
                   <div className={styles.radioGroup}>
-                    <label className={styles.radioLabel}>
-                      <input type="radio" name="otp" checked={otpEmail} onChange={() => setOtpEmail(true)} />
-                      <span>Yes</span>
-                    </label>
-                    <label className={styles.radioLabel}>
-                      <input type="radio" name="otp" checked={!otpEmail} onChange={() => setOtpEmail(false)} />
-                      <span>No</span>
-                    </label>
+                    <label className={styles.radioLabel}><input type="radio" name="otp" checked={otpEmail} onChange={() => setOtpEmail(true)} /><span>Yes</span></label>
+                    <label className={styles.radioLabel}><input type="radio" name="otp" checked={!otpEmail} onChange={() => setOtpEmail(false)} /><span>No</span></label>
                   </div>
                 </div>
-
                 <div className={styles.toggleItem}>
                   <div className={styles.toggleInfo}>
                     <p className={styles.toggleTitle}>Profit Notification</p>
                     <p className={styles.toggleDesc}>Send me an email when I receive profit from my investment plan.</p>
                   </div>
                   <div className={styles.radioGroup}>
-                    <label className={styles.radioLabel}>
-                      <input type="radio" name="profit" checked={profitEmail} onChange={() => setProfitEmail(true)} />
-                      <span>Yes</span>
-                    </label>
-                    <label className={styles.radioLabel}>
-                      <input type="radio" name="profit" checked={!profitEmail} onChange={() => setProfitEmail(false)} />
-                      <span>No</span>
-                    </label>
+                    <label className={styles.radioLabel}><input type="radio" name="profit" checked={profitEmail} onChange={() => setProfitEmail(true)} /><span>Yes</span></label>
+                    <label className={styles.radioLabel}><input type="radio" name="profit" checked={!profitEmail} onChange={() => setProfitEmail(false)} /><span>No</span></label>
                   </div>
                 </div>
-
                 <div className={styles.toggleItem}>
                   <div className={styles.toggleInfo}>
                     <p className={styles.toggleTitle}>Plan Expiry Notification</p>
                     <p className={styles.toggleDesc}>Send me an email when my investment plan expires.</p>
                   </div>
                   <div className={styles.radioGroup}>
-                    <label className={styles.radioLabel}>
-                      <input type="radio" name="plan" checked={planEmail} onChange={() => setPlanEmail(true)} />
-                      <span>Yes</span>
-                    </label>
-                    <label className={styles.radioLabel}>
-                      <input type="radio" name="plan" checked={!planEmail} onChange={() => setPlanEmail(false)} />
-                      <span>No</span>
-                    </label>
+                    <label className={styles.radioLabel}><input type="radio" name="plan" checked={planEmail} onChange={() => setPlanEmail(true)} /><span>Yes</span></label>
+                    <label className={styles.radioLabel}><input type="radio" name="plan" checked={!planEmail} onChange={() => setPlanEmail(false)} /><span>No</span></label>
                   </div>
                 </div>
               </div>
-
               <div className={styles.actionRow}>
-                <button className={styles.saveBtn} onClick={saveOther}>
-                  {oSaved
-                    ? <><svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Saved!</>
-                    : 'Save Preferences'
-                  }
+                <button className={styles.saveBtn} onClick={saveOther} disabled={loading}>
+                  {oSaved ? <><svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Saved!</> : loading ? 'Saving...' : 'Save Preferences'}
                 </button>
               </div>
             </div>
           )}
         </div>
       </div>
+      <StatusModal isOpen={modal.isOpen} onClose={() => setModal({ ...modal, isOpen: false })} type={modal.type} title={modal.title} message={modal.message} />
     </div>
   );
 }

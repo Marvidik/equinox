@@ -1,19 +1,9 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './page.module.css';
+import { authService } from '@/services/authService';
 
 type Tab = 'deposit' | 'withdrawal';
-
-const DEPOSITS = [
-  { id: 1, amount: 315000, mode: 'BTC',  status: true,  date: 'Fri, Nov 21, 2025, 8:43 PM' },
-  { id: 2, amount: 50000,  mode: 'USDT', status: true,  date: 'Mon, Oct 5, 2025, 3:22 PM'  },
-  { id: 3, amount: 12000,  mode: 'ETH',  status: false, date: 'Wed, Sep 10, 2025, 9:10 AM' },
-];
-
-const WITHDRAWALS = [
-  { id: 1, amountReq: 443150, amountCharge: 443150, mode: 'Bitcoin', status: true,  date: 'Fri, Nov 21, 2025, 8:48 PM' },
-  { id: 2, amountReq: 80000,  amountCharge: 80000,  mode: 'USDT',   status: false, date: 'Tue, Oct 7, 2025, 1:15 PM'  },
-];
 
 const PAGE_SIZE_OPTIONS = [5, 10, 25];
 
@@ -22,14 +12,35 @@ export default function TransactionsPage() {
   const [search, setSearch] = useState('');
   const [pageSize, setPageSize] = useState(10);
   const [page, setPage] = useState(1);
+  const [deposits, setDeposits] = useState<any[]>([]);
+  const [withdrawals, setWithdrawals] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const depositFiltered = DEPOSITS.filter(
-    d => d.mode.toLowerCase().includes(search.toLowerCase()) ||
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [depData, withData] = await Promise.all([
+          authService.getDeposits(),
+          authService.getWithdrawals()
+        ]);
+        setDeposits(depData || []);
+        setWithdrawals(withData || []);
+      } catch (err) {
+        console.error("Failed to fetch transaction data:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const depositFiltered = deposits.filter(
+    d => (d.coin || d.mode || '').toLowerCase().includes(search.toLowerCase()) ||
          String(d.amount).includes(search)
   );
-  const withdrawalFiltered = WITHDRAWALS.filter(
-    w => w.mode.toLowerCase().includes(search.toLowerCase()) ||
-         String(w.amountReq).includes(search)
+  const withdrawalFiltered = withdrawals.filter(
+    w => (w.coin || w.mode || '').toLowerCase().includes(search.toLowerCase()) ||
+         String(w.amount || w.amountReq).includes(search)
   );
 
   const data     = tab === 'deposit' ? depositFiltered : withdrawalFiltered;
@@ -118,18 +129,20 @@ export default function TransactionsPage() {
                 </tr>
               </thead>
               <tbody>
-                {sliced.length === 0 ? (
+                {loading ? (
+                  <tr><td colSpan={4} className={styles.emptyCell}>Loading records...</td></tr>
+                ) : sliced.length === 0 ? (
                   <tr><td colSpan={4} className={styles.emptyCell}>No records found.</td></tr>
-                ) : (sliced as typeof DEPOSITS).map(d => (
-                  <tr key={d.id}>
-                    <td className={styles.amountCell}>${d.amount.toLocaleString()}</td>
-                    <td>{d.mode}</td>
+                ) : sliced.map((d: any, i) => (
+                  <tr key={d.id || i}>
+                    <td className={styles.amountCell}>${Number(d.amount).toLocaleString()}</td>
+                    <td>{d.coin || d.mode || 'N/A'}</td>
                     <td>
                       <span className={`${styles.badge} ${d.status ? styles.badgeSuccess : styles.badgePending}`}>
-                        {d.status ? 'True' : 'Pending'}
+                        {d.status ? 'Processed' : 'Pending'}
                       </span>
                     </td>
-                    <td className={styles.dateCell}>{d.date}</td>
+                    <td className={styles.dateCell}>{d.date ? new Date(d.date).toLocaleString() : 'N/A'}</td>
                   </tr>
                 ))}
               </tbody>
@@ -146,19 +159,21 @@ export default function TransactionsPage() {
                 </tr>
               </thead>
               <tbody>
-                {sliced.length === 0 ? (
+                {loading ? (
+                  <tr><td colSpan={5} className={styles.emptyCell}>Loading records...</td></tr>
+                ) : sliced.length === 0 ? (
                   <tr><td colSpan={5} className={styles.emptyCell}>No records found.</td></tr>
-                ) : (sliced as typeof WITHDRAWALS).map(w => (
-                  <tr key={w.id}>
-                    <td className={styles.amountCell}>${w.amountReq.toLocaleString()}</td>
-                    <td>${w.amountCharge.toLocaleString()}</td>
-                    <td>{w.mode}</td>
+                ) : sliced.map((w: any, i) => (
+                  <tr key={w.id || i}>
+                    <td className={styles.amountCell}>${Number(w.amount || w.amountReq).toLocaleString()}</td>
+                    <td>${Number(w.amount || w.amountCharge).toLocaleString()}</td>
+                    <td>{w.coin || w.mode || 'N/A'}</td>
                     <td>
                       <span className={`${styles.badge} ${w.status ? styles.badgeSuccess : styles.badgePending}`}>
-                        {w.status ? 'True' : 'Pending'}
+                        {w.status ? 'Processed' : 'Pending'}
                       </span>
                     </td>
-                    <td className={styles.dateCell}>{w.date}</td>
+                    <td className={styles.dateCell}>{w.date ? new Date(w.date).toLocaleString() : 'N/A'}</td>
                   </tr>
                 ))}
               </tbody>

@@ -4,6 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
 
+import { useRouter } from 'next/navigation';
+import { authService } from '@/services/authService';
+import StatusModal from '@/components/StatusModal';
+
 const FLOATING_AVATARS = [
   { src: '/images/team1.jpg', style: { top: '10%', left: '4%' } },
   { src: '/images/team2.jpg', style: { top: '35%', left: '2%' } },
@@ -14,81 +18,165 @@ const FLOATING_AVATARS = [
 ];
 
 export default function Login() {
+  const router = useRouter();
   const [showPass, setShowPass] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: '', message: '', type: 'success' as 'success' | 'error' });
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError(null);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+
+    try {
+      const response = await authService.login({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (response.status === "Not Verified") {
+        setModalContent({
+          title: "Account Not Verified",
+          message: "Your account is not verified yet. Please check your email and click the verification link to activate your account.",
+          type: 'error',
+        });
+        setShowModal(true);
+        setLoading(false);
+        return;
+      }
+
+      // Save session
+      authService.setSession(response.token, response);
+
+      // Redirect to dashboard
+      router.push('/dashboard');
+    } catch (err: any) {
+      setError(err.message || "Invalid credentials. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className={styles.page}>
-      {/* Full Background */}
-      <div className={styles.bgImage}>
-        <Image src="/images/chart1.jpg" alt="Background" fill style={{ objectFit: 'cover' }} priority />
-        <div className={styles.bgOverlay}></div>
-      </div>
-
-      {/* Floating Orbs */}
-      <div className={styles.orb1}></div>
-      <div className={styles.orb2}></div>
-
-      {/* Floating Avatars */}
-      {FLOATING_AVATARS.map((av, i) => (
-        <div key={i} className={styles.floatingAvatar} style={av.style as React.CSSProperties}>
-          <Image src={av.src} alt="Team member" fill style={{ objectFit: 'cover' }} sizes="80px" />
+    <>
+      <div className={styles.page}>
+        {/* Full Background */}
+        <div className={styles.bgImage}>
+          <Image src="/images/chart1.jpg" alt="Background" fill style={{ objectFit: 'cover' }} priority />
+          <div className={styles.bgOverlay}></div>
         </div>
-      ))}
 
-      {/* Floating Stats Chip */}
-      <div className={styles.floatingChip1}>
-        <span className={styles.chipNum}>10 Years</span>
-        <span className={styles.chipLabel}>Trading Experience</span>
-      </div>
-      <div className={styles.floatingChip2}>
-        <span className={styles.chipNum}>25K+</span>
-        <span className={styles.chipLabel}>Satisfied Investors</span>
-      </div>
+        {/* Floating Orbs */}
+        <div className={styles.orb1}></div>
+        <div className={styles.orb2}></div>
 
-      {/* Logo */}
-      <Link href="/" className={styles.topLogo}>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2L2 12L12 22L22 12L12 2Z" stroke="#3bd1d3" strokeWidth="2" strokeLinejoin="round"/>
-          <path d="M7 12L12 7L17 12L12 17L7 12Z" stroke="#3bd1d3" strokeWidth="2" strokeLinejoin="round"/>
-        </svg>
-        <span>Equinox</span>
-      </Link>
-
-      {/* Centered Form */}
-      <div className={styles.formWrapper}>
-        <div className={styles.formCard}>
-          <div className={styles.formHeader}>
-            <h2 className={styles.formTitle}>Sign In</h2>
-            <p className={styles.formSubtitle}>Welcome back — access your portfolio</p>
+        {/* Floating Avatars */}
+        {FLOATING_AVATARS.map((av, i) => (
+          <div key={i} className={styles.floatingAvatar} style={av.style as React.CSSProperties}>
+            <Image src={av.src} alt="Team member" fill style={{ objectFit: 'cover' }} sizes="80px" />
           </div>
+        ))}
 
-          <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
-            <div className={styles.inputGroup}>
-              <label htmlFor="email">Email Address</label>
-              <input type="email" id="email" placeholder="Enter your email" />
+        {/* Floating Stats Chip */}
+        <div className={styles.floatingChip1}>
+          <span className={styles.chipNum}>10 Years</span>
+          <span className={styles.chipLabel}>Trading Experience</span>
+        </div>
+        <div className={styles.floatingChip2}>
+          <span className={styles.chipNum}>25K+</span>
+          <span className={styles.chipLabel}>Satisfied Investors</span>
+        </div>
+
+        {/* Logo */}
+        <Link href="/" className={styles.topLogo}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 12L12 22L22 12L12 2Z" stroke="#3bd1d3" strokeWidth="2" strokeLinejoin="round"/>
+            <path d="M7 12L12 7L17 12L12 17L7 12Z" stroke="#3bd1d3" strokeWidth="2" strokeLinejoin="round"/>
+          </svg>
+          <span>Equinox</span>
+        </Link>
+
+        {/* Centered Form */}
+        <div className={styles.formWrapper}>
+          <div className={styles.formCard}>
+            <div className={styles.formHeader}>
+              <h2 className={styles.formTitle}>Sign In</h2>
+              <p className={styles.formSubtitle}>Welcome back — access your portfolio</p>
             </div>
 
-            <div className={styles.inputGroup}>
-              <div className={styles.passwordHeader}>
-                <label htmlFor="password">Password</label>
-                <Link href="#" className={styles.forgotLink}>Forgot password?</Link>
+            {error && (
+              <div style={{ background: '#fee2e2', color: '#b91c1c', padding: '12px', borderRadius: '8px', marginBottom: '20px', textAlign: 'center', fontSize: '0.9rem' }}>
+                {error}
               </div>
-              <div className={styles.inputWithIcon}>
-                <input type={showPass ? 'text' : 'password'} id="password" placeholder="Enter your password" />
-                <button type="button" className={styles.eyeBtn} onClick={() => setShowPass(!showPass)}>
-                  {showPass ? '🙈' : '👁️'}
-                </button>
-              </div>
-            </div>
+            )}
 
-            <button type="submit" className={styles.submitBtn}>Sign In</button>
-            
-            <div className={styles.footerText}>
-              Don&apos;t have an account? <Link href="/register" className={styles.link}>Create one here</Link>
-            </div>
-          </form>
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <div className={styles.inputGroup}>
+                <label htmlFor="email">Email Address</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  value={formData.email} 
+                  onChange={handleChange} 
+                  placeholder="Enter your email" 
+                  required 
+                />
+              </div>
+
+              <div className={styles.inputGroup}>
+                <div className={styles.passwordHeader}>
+                  <label htmlFor="password">Password</label>
+                  <Link href="/forgot" className={styles.forgotLink}>Forgot password?</Link>
+                </div>
+                <div className={styles.inputWithIcon}>
+                  <input 
+                    type={showPass ? 'text' : 'password'} 
+                    id="password" 
+                    name="password" 
+                    value={formData.password} 
+                    onChange={handleChange} 
+                    placeholder="Enter your password" 
+                    required 
+                  />
+                  <button type="button" className={styles.eyeBtn} onClick={() => setShowPass(!showPass)}>
+                    {showPass ? '🙈' : '👁️'}
+                  </button>
+                </div>
+              </div>
+
+              <button type="submit" className={styles.submitBtn} disabled={loading}>
+                {loading ? 'Signing In...' : 'Sign In'}
+              </button>
+              
+              <div className={styles.footerText}>
+                Don&apos;t have an account? <Link href="/register" className={styles.link}>Create one here</Link>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+
+      <StatusModal 
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        title={modalContent.title}
+        message={modalContent.message}
+        type={modalContent.type}
+      />
+    </>
   );
 }
+

@@ -1,12 +1,7 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './page.module.css';
-
-const PROFITS = [
-  { id: 1, plan: 'Basic Plan',      amount: 8,       type: 'profit', date: '5/3/2026'  },
-  { id: 2, plan: 'Cooperate Plan',  amount: 220500,  type: 'profit', date: '11/22/2025' },
-  { id: 3, plan: 'Basic',           amount: 1235000, type: 'profit', date: '11/21/2025' },
-];
+import { authService } from '@/services/authService';
 
 const PAGE_SIZE_OPTIONS = [5, 10, 25];
 
@@ -14,11 +9,27 @@ export default function ProfitsPage() {
   const [search, setSearch]     = useState('');
   const [pageSize, setPageSize] = useState(10);
   const [page, setPage]         = useState(1);
+  const [profits, setProfits]   = useState<any[]>([]);
+  const [loading, setLoading]   = useState(true);
 
-  const filtered = PROFITS.filter(
-    p => p.plan.toLowerCase().includes(search.toLowerCase()) ||
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await authService.getProfits();
+        setProfits(data.profits || []);
+      } catch (err) {
+        console.error("Failed to fetch profits:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const filtered = profits.filter(
+    p => (p.plan || '').toLowerCase().includes(search.toLowerCase()) ||
          String(p.amount).includes(search) ||
-         p.type.toLowerCase().includes(search.toLowerCase())
+         (p.type || '').toLowerCase().includes(search.toLowerCase())
   );
 
   const total  = filtered.length;
@@ -47,15 +58,15 @@ export default function ProfitsPage() {
       <div className={styles.statsRow}>
         <div className={styles.statCard}>
           <p className={styles.statLabel}>Total Profits</p>
-          <p className={styles.statValue}>${PROFITS.reduce((a, p) => a + p.amount, 0).toLocaleString()}</p>
+          <p className={styles.statValue}>${profits.reduce((a, p) => a + Number(p.amount || 0), 0).toLocaleString()}</p>
         </div>
         <div className={styles.statCard}>
           <p className={styles.statLabel}>Profit Entries</p>
-          <p className={styles.statValue}>{PROFITS.length}</p>
+          <p className={styles.statValue}>{profits.length}</p>
         </div>
         <div className={styles.statCard}>
           <p className={styles.statLabel}>Latest Profit</p>
-          <p className={styles.statValue}>${PROFITS[0].amount.toLocaleString()}</p>
+          <p className={styles.statValue}>${profits.length > 0 ? Number(profits[0].amount).toLocaleString() : '0'}</p>
         </div>
       </div>
 
@@ -95,16 +106,18 @@ export default function ProfitsPage() {
               </tr>
             </thead>
             <tbody>
-              {sliced.length === 0 ? (
+              {loading ? (
+                <tr><td colSpan={4} className={styles.emptyCell}>Loading records...</td></tr>
+              ) : sliced.length === 0 ? (
                 <tr><td colSpan={4} className={styles.emptyCell}>No profit records found.</td></tr>
-              ) : sliced.map(p => (
-                <tr key={p.id}>
+              ) : sliced.map((p, i) => (
+                <tr key={p.id || i}>
                   <td className={styles.planCell}>{p.plan}</td>
-                  <td className={styles.amountCell}>${p.amount.toLocaleString()}</td>
+                  <td className={styles.amountCell}>${Number(p.amount).toLocaleString()}</td>
                   <td>
-                    <span className={styles.typeBadge}>{p.type}</span>
+                    <span className={styles.typeBadge}>{p.type || 'profit'}</span>
                   </td>
-                  <td className={styles.dateCell}>{p.date}</td>
+                  <td className={styles.dateCell}>{p.date ? new Date(p.date).toLocaleString() : 'N/A'}</td>
                 </tr>
               ))}
             </tbody>

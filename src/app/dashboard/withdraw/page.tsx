@@ -1,24 +1,30 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import styles from './page.module.css';
+import { authService } from '@/services/authService';
+import StatusModal from '@/components/StatusModal';
 
 type Step = 'form' | 'withdraw';
 
 export default function WithdrawPage() {
   const [step, setStep] = useState<Step>('form');
-  const [showModal, setShowModal] = useState(true);
+  const [showAuthModal, setShowAuthModal] = useState(true);
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [verifyError, setVerifyError] = useState('');
 
   const [amount, setAmount] = useState('');
+  const [coin, setCoin] = useState('usdt');
   const [usdtAddress, setUsdtAddress] = useState('');
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [otpCooldown, setOtpCooldown] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const [modal, setModal] = useState({ isOpen: false, type: 'success' as 'success' | 'error', title: '', message: '' });
+  const showModal = (type: 'success' | 'error', title: string, message: string) => setModal({ isOpen: true, type, title, message });
 
   // OTP cooldown timer
   useEffect(() => {
@@ -37,7 +43,7 @@ export default function WithdrawPage() {
     setVerifying(true);
     await new Promise(r => setTimeout(r, 1200));
     setVerifying(false);
-    setShowModal(false);
+    setShowAuthModal(false);
     setStep('withdraw');
   };
 
@@ -48,16 +54,29 @@ export default function WithdrawPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!amount || !usdtAddress) {
+      showModal('error', 'Missing Fields', 'Please enter both amount and wallet address.');
+      return;
+    }
     setSubmitting(true);
-    await new Promise(r => setTimeout(r, 1800));
-    setSubmitting(false);
-    setSubmitted(true);
+    try {
+      await authService.submitWithdrawal({
+        amount: parseFloat(amount),
+        coin: coin.toLowerCase(),
+        wallet: usdtAddress
+      });
+      setSubmitted(true);
+    } catch (err: any) {
+      showModal('error', 'Withdrawal Failed', err.message || 'Failed to process withdrawal.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <div className={styles.page}>
       {/* ── PASSWORD VERIFY MODAL ── */}
-      {showModal && (
+      {showAuthModal && (
         <div className={styles.modalBackdrop}>
           <div className={styles.modal}>
             <div className={styles.modalShieldWrap}>
@@ -220,6 +239,8 @@ export default function WithdrawPage() {
           )}
         </div>
       )}
+
+      <StatusModal isOpen={modal.isOpen} onClose={() => setModal({ ...modal, isOpen: false })} type={modal.type} title={modal.title} message={modal.message} />
     </div>
   );
 }

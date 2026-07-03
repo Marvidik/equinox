@@ -1,9 +1,10 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './page.module.css';
+import { authService } from '@/services/authService';
+import StatusModal from '@/components/StatusModal';
 
 type Step = 'verify' | 'transfer' | 'success';
-const BALANCE = 1332363;
 
 export default function TransferPage() {
   const [step, setStep] = useState<Step>('verify');
@@ -16,6 +17,14 @@ export default function TransferPage() {
   const [transferPass, setTransferPass] = useState('');
   const [showTPass, setShowTPass] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [balance, setBalance] = useState<number | null>(null);
+
+  const [modal, setModal] = useState({ isOpen: false, type: 'success' as 'success' | 'error', title: '', message: '' });
+  const showModal = (type: 'success' | 'error', title: string, message: string) => setModal({ isOpen: true, type, title, message });
+
+  useEffect(() => {
+    authService.getDashboardData().then(d => setBalance(d?.account_balance || 0)).catch(() => {});
+  }, []);
 
   const fee = parseFloat(amount || '0') * 0.02;
   const totalSend = parseFloat(amount || '0') + fee;
@@ -32,10 +41,23 @@ export default function TransferPage() {
 
   const handleTransfer = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!recipient || !amount || !transferPass) {
+      showModal('error', 'Missing Fields', 'Please fill all required fields.');
+      return;
+    }
     setSubmitting(true);
-    await new Promise(r => setTimeout(r, 1800));
-    setSubmitting(false);
-    setStep('success');
+    try {
+      await authService.submitTransfer({
+        amount: parseFloat(amount),
+        recipient,
+        password: transferPass
+      });
+      setStep('success');
+    } catch (err: any) {
+      showModal('error', 'Transfer Failed', err.message || 'Failed to process transfer.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (step === 'success') {
@@ -131,7 +153,7 @@ export default function TransferPage() {
             </div>
             <div>
               <p className={styles.balanceLabel}>Your Account Balance</p>
-              <p className={styles.balanceValue}>${BALANCE.toLocaleString('en', { minimumFractionDigits: 2 })}</p>
+              <p className={styles.balanceValue}>{balance !== null ? `$${balance.toLocaleString('en', { minimumFractionDigits: 2 })}` : '$...'}</p>
             </div>
           </div>
 
@@ -201,6 +223,8 @@ export default function TransferPage() {
           </div>
         </div>
       </div>
+
+      <StatusModal isOpen={modal.isOpen} onClose={() => setModal({ ...modal, isOpen: false })} type={modal.type} title={modal.title} message={modal.message} />
     </div>
   );
 }
