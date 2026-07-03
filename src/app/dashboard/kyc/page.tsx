@@ -7,15 +7,16 @@ export default function KycPage() {
   const [step, setStep] = useState<'intro' | 'form' | 'success'>('intro');
   const [docType, setDocType] = useState('Passport');
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    dob: '',
-    gender: '',
-    nationality: '',
-    address: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone_number: '',
+    date_of_birth: '',
+    social_username: '',
+    address_line: '',
+    state: '',
     city: '',
-    zip: '',
-    idNumber: ''
+    nationality: ''
   });
   const [frontImage, setFrontImage] = useState<File | null>(null);
   const [backImage, setBackImage] = useState<File | null>(null);
@@ -40,10 +41,9 @@ export default function KycPage() {
     try {
       const data = new FormData();
       Object.entries(formData).forEach(([key, value]) => data.append(key, value));
-      data.append('document_type', docType);
-      if (frontImage) data.append('id_front', frontImage);
-      if (backImage) data.append('id_back', backImage);
-      if (selfieImage) data.append('selfie', selfieImage);
+      if (frontImage) data.append('document_front', frontImage);
+      if (backImage) data.append('document_back', backImage);
+      data.append('all_info_confirmed', confirm ? 'true' : 'false');
 
       await authService.submitKyc(data);
       setStep('success');
@@ -162,32 +162,31 @@ export default function KycPage() {
               <div className={styles.grid2}>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>First Name <span>*</span></label>
-                  <input className={styles.input} type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} required placeholder="John" />
+                  <input className={styles.input} type="text" name="first_name" value={formData.first_name} onChange={handleInputChange} required placeholder="John" />
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Last Name <span>*</span></label>
-                  <input className={styles.input} type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} required placeholder="Doe" />
+                  <input className={styles.input} type="text" name="last_name" value={formData.last_name} onChange={handleInputChange} required placeholder="Doe" />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Email <span>*</span></label>
+                  <input className={styles.input} type="email" name="email" value={formData.email} onChange={handleInputChange} required placeholder="john@example.com" />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Phone Number <span>*</span></label>
+                  <input className={styles.input} type="tel" name="phone_number" value={formData.phone_number} onChange={handleInputChange} required placeholder="+1 234 567 890" />
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Date of Birth <span>*</span></label>
-                  <input className={styles.input} type="date" name="dob" value={formData.dob} onChange={handleInputChange} required />
+                  <input className={styles.input} type="date" name="date_of_birth" value={formData.date_of_birth} onChange={handleInputChange} required />
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Gender <span>*</span></label>
-                  <select className={styles.input} name="gender" value={formData.gender} onChange={handleInputChange} required>
-                    <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                  </select>
+                  <label className={styles.label}>Social Username (e.g. Telegram/X) <span>*</span></label>
+                  <input className={styles.input} type="text" name="social_username" value={formData.social_username} onChange={handleInputChange} required placeholder="@username" />
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Nationality <span>*</span></label>
                   <input className={styles.input} type="text" name="nationality" value={formData.nationality} onChange={handleInputChange} required placeholder="e.g. American" />
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>ID Number <span>*</span></label>
-                  <input className={styles.input} type="text" name="idNumber" value={formData.idNumber} onChange={handleInputChange} required placeholder="Passport / ID Number" />
                 </div>
               </div>
             </div>
@@ -198,23 +197,21 @@ export default function KycPage() {
               <div className={styles.grid2}>
                 <div className={styles.formGroup} style={{ gridColumn: '1 / -1' }}>
                   <label className={styles.label}>Full Address <span>*</span></label>
-                  <input className={styles.input} type="text" name="address" value={formData.address} onChange={handleInputChange} required placeholder="Street address" />
+                  <input className={styles.input} type="text" name="address_line" value={formData.address_line} onChange={handleInputChange} required placeholder="Street address" />
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>City / State <span>*</span></label>
-                  <input className={styles.input} type="text" name="city" value={formData.city} onChange={handleInputChange} required placeholder="New York, NY" />
+                  <label className={styles.label}>City <span>*</span></label>
+                  <input className={styles.input} type="text" name="city" value={formData.city} onChange={handleInputChange} required placeholder="New York" />
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Zip Code <span>*</span></label>
-                  <input className={styles.input} type="text" name="zip" value={formData.zip} onChange={handleInputChange} required placeholder="10001" />
+                  <label className={styles.label}>State / Region <span>*</span></label>
+                  <input className={styles.input} type="text" name="state" value={formData.state} onChange={handleInputChange} required placeholder="NY" />
                 </div>
               </div>
             </div>
 
             <div className={styles.sectionBlock}>
               <h3 className={styles.sectionTitle}>Document Upload</h3>
-              <p className={styles.sectionDesc}>Upload clear images of your {docType.toLowerCase()} and a selfie.</p>
-
               <div className={styles.uploadRow}>
                 <div className={`${styles.dropZone} ${frontImage ? styles.dropZoneDone : ''}`} onClick={() => document.getElementById('front-upload')?.click()}>
                   <input type="file" id="front-upload" hidden accept="image/*" onChange={(e) => handleFileChange(e, setFrontImage)} />
@@ -230,13 +227,6 @@ export default function KycPage() {
                   <span>JPG, PNG or PDF</span>
                 </div>
               </div>
-
-              <div className={`${styles.dropZone} ${selfieImage ? styles.dropZoneDone : ''}`} style={{ marginTop: '1rem' }} onClick={() => document.getElementById('selfie-upload')?.click()}>
-                <input type="file" id="selfie-upload" hidden accept="image/*" onChange={(e) => handleFileChange(e, setSelfieImage)} />
-                <svg width="28" height="28" fill="none" stroke={selfieImage ? '#3bd1d3' : '#94a3b8'} strokeWidth="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                <p>{selfieImage ? selfieImage.name : 'Upload Selfie with ID'}</p>
-                <span>Hold your {docType.toLowerCase()} next to your face</span>
-              </div>
             </div>
 
             <div className={styles.confirmBox}>
@@ -246,7 +236,7 @@ export default function KycPage() {
               </label>
             </div>
 
-            <button type="submit" className={styles.submitBtn} disabled={!confirm || submitting || !frontImage || !selfieImage}>
+            <button type="submit" className={styles.submitBtn} disabled={!confirm || submitting || !frontImage || !backImage}>
               {submitting ? 'Submitting...' : 'Submit KYC Application'}
             </button>
           </form>

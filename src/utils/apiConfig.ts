@@ -1,6 +1,8 @@
 export const BASE_URL = 'https://banko.pythonanywhere.com/';
 
 export const ENDPOINTS = {
+  // ─── Auth & User ───
+  BASE_URL,
   register: `${BASE_URL}auth/register`,
   login: `${BASE_URL}auth/login`,
   otp: `${BASE_URL}auth/otp`,
@@ -28,4 +30,31 @@ export const ENDPOINTS = {
   kycSubmit: `${BASE_URL}user/kyc/submit`,
   toggleAutoReinvest: (id: number | string) => `${BASE_URL}user/investment/${id}/toggle-auto-reinvest`,
   verifyAccount: (token: string) => `${BASE_URL}auth/verify/${token}`,
+
+  // ─── Admin ───
+  adminDashboard: `${BASE_URL}administrator/dashboard`,
+  adminUsers: `${BASE_URL}administrator/users`,
+  adminUser: (id: number | string) => `${BASE_URL}administrator/users/${id}`,
+  adminPlans: `${BASE_URL}administrator/plans`,
+  adminPlan: (id: number | string) => `${BASE_URL}administrator/plans/${id}`,
+  adminActiveInvestments: `${BASE_URL}administrator/active-investments`,
+  adminDeposits: `${BASE_URL}administrator/deposits`,
+  adminApproveDeposit: (id: number | string) => `${BASE_URL}administrator/deposits/${id}/approve`,
+  adminWithdrawals: `${BASE_URL}administrator/withdrawals`,
+  adminApproveWithdrawal: (id: number | string) => `${BASE_URL}administrator/withdrawals/${id}/approve`,
+  adminDeleteWithdrawal: (id: number | string) => `${BASE_URL}administrator/withdrawals/${id}/delete`,
+  adminProfits: `${BASE_URL}administrator/profits`,
+  adminBonuses: `${BASE_URL}administrator/bonuses`,
+  adminCreateBonus: `${BASE_URL}administrator/bonuses/create`,
+  adminPenalties: `${BASE_URL}administrator/penalties`,
+  adminCreatePenalty: `${BASE_URL}administrator/penalties/create`,
+  adminReferrals: `${BASE_URL}administrator/referrals`,
+  adminReferralBonuses: `${BASE_URL}administrator/referral-bonuses`,
+  adminKyc: `${BASE_URL}administrator/kyc`,
+  adminKycApprove: (id: number | string) => `${BASE_URL}administrator/kyc/${id}`,
+  adminPaymentMethods: `${BASE_URL}administrator/payment-methods`,
+  adminCreatePaymentMethod: `${BASE_URL}administrator/payment-methods/create`,
+  adminUpdatePaymentMethod: (id: number | string) => `${BASE_URL}administrator/payment-methods/${id}/update`,
+  adminDeletePaymentMethod: (id: number | string) => `${BASE_URL}administrator/payment-methods/${id}/delete`,
+  adminSettings: `${BASE_URL}administrator/settings`,
 };
