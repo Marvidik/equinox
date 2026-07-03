@@ -129,15 +129,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
               <span>KYC</span>
             </Link>
-            <Link href="/dashboard/settings" className={styles.profile}>
-              <div className={styles.profileInfo}>
-                <span className={styles.profileName}>{user?.full_name || '...'}</span>
-                <span className={styles.profileEmail}>{user?.email || '...'}</span>
-              </div>
-              <div className={styles.avatar}>
-                <Image src="/images/team1.jpg" alt="Profile" width={48} height={48} style={{ objectFit: 'cover' }} />
-              </div>
-            </Link>
           </div>
         </header>
         {children}
