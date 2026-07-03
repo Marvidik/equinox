@@ -573,3 +573,40 @@
   .page { padding: 1.25rem 1rem 2rem; }
   .payActions { flex-direction: column; }
 }
+
+@media (max-width: 480px) {
+  .bigAmountField {
+    flex-direction: column;
+    border-radius: 12px;
+  }
+  .bigCurrencySymbol {
+    border-right: none;
+    border-bottom: 2px solid #e2e8f0;
+    width: 100%;
+    text-align: center;
+  }
+  .bigAmountField input {
+    text-align: center;
+  }
+  .summaryStrip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .stripDivider {
+    display: none;
+  }
+  .addressRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .copyBtn {
+    justify-content: center;
+    padding: 0.8rem;
+  }
+  .payInfoRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+}

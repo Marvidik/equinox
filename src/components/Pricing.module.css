@@ -383,4 +383,11 @@
   .cardBodyArea {
     padding: 20px;
   }
+  .rangeRow {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .rangeCol:last-child {
+    align-items: flex-start;
+  }
 }
