@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from './Pricing.module.css';
 
 const plans = [
@@ -161,11 +162,11 @@ export default function Pricing() {
                   {plan.principal}
                 </div>
 
-                <button className={plan.theme === 'accent' ? styles.btnAccent : plan.theme === 'purple' ? styles.btnPurple : styles.btnOutline}>
+                <Link href="/register" className={plan.theme === 'accent' ? styles.btnAccent : plan.theme === 'purple' ? styles.btnPurple : styles.btnOutline}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                   INVEST NOW
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </button>
+                </Link>
               </div>
             </div>
           ))}

@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './MeetCompany.module.css';
 
 export default function MeetCompany() {
@@ -70,7 +71,7 @@ export default function MeetCompany() {
             </div>
           </div>
 
-          <button className={styles.ctaBtn}>Discover Our Plans</button>
+          <Link href="/plans" className={styles.ctaBtn}>Discover Our Plans</Link>
         </div>
       </div>
     </section>

@@ -151,28 +151,40 @@ export default function Navbar() {
             </Link>
           ))}
 
+          {/* Auth Links */}
+          <Link href="/login" className={styles.drawerLoginBtn} onClick={() => setMobileOpen(false)}>Login</Link>
+          <Link href="/register" className={styles.drawerRegisterBtn} onClick={() => setMobileOpen(false)}>Get Started</Link>
+
           {/* Language Section */}
           <div className={styles.drawerLangSection}>
-            <p className={styles.drawerLangLabel}>Language</p>
-            <div className={styles.drawerLangGrid}>
-              {LANGUAGES.map(lang => (
-                <button
-                  key={lang.code}
-                  className={`${styles.drawerLangItem} ${currentLang.code === lang.code ? styles.drawerLangActive : ''}`}
-                  onClick={() => { handleLangChange(lang); setMobileOpen(false); }}
-                >
-                  <span>{lang.flag}</span>
-                  <span>{lang.name}</span>
-                </button>
-              ))}
-            </div>
+            <button className={styles.drawerLangToggle} onClick={() => setLangOpen(!langOpen)}>
+              <div className={styles.drawerLangToggleLeft}>
+                <span className={styles.drawerLangLabel}>Language:</span>
+                <span className={styles.flag}>{currentLang.flag}</span>
+                <span>{currentLang.name}</span>
+              </div>
+              <svg className={`${styles.chevron} ${langOpen ? styles.open : ''}`} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </button>
+            {langOpen && (
+              <div className={styles.drawerLangGrid}>
+                {LANGUAGES.map(lang => (
+                  <button
+                    key={lang.code}
+                    className={`${styles.drawerLangItem} ${currentLang.code === lang.code ? styles.drawerLangActive : ''}`}
+                    onClick={() => { handleLangChange(lang); setMobileOpen(false); }}
+                  >
+                    <span>{lang.flag}</span>
+                    <span>{lang.name}</span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </nav>
 
-        <div className={styles.drawerActions}>
-          <Link href="/login" className={styles.drawerLoginBtn} onClick={() => setMobileOpen(false)}>Login</Link>
-          <Link href="/register" className={styles.drawerRegisterBtn} onClick={() => setMobileOpen(false)}>Get Started</Link>
-        </div>
+
       </div>
     </>
   );

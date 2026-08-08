@@ -1,0 +1,144 @@
+/* Fixed bottom-left toast */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(18, 18, 30, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  padding: 0.85rem 1rem 0.85rem 0.85rem;
+  max-width: 310px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(59, 209, 211, 0.08);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+/* Icon */
+.iconWrap {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: rgba(59, 209, 211, 0.12);
+  border: 1px solid rgba(59, 209, 211, 0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Text content */
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.message {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 0.3rem;
+  word-break: break-word;
+}
+
+.name {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.flag {
+  font-size: 0.9rem;
+}
+
+.country {
+  font-weight: 600;
+  color: #3bd1d3;
+}
+
+.amount {
+  font-weight: 700;
+  color: #34d399;
+}
+
+/* Meta row */
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.73rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.timeText {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.liveText {
+  color: #34d399;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.68rem;
+}
+
+/* Close button */
+.closeBtn {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.1rem;
+  transition: color 0.2s;
+  align-self: flex-start;
+}
+
+.closeBtn:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 480px) {
+  .toast {
+    bottom: 1rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    max-width: none;
+  }
+}

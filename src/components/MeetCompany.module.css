@@ -163,6 +163,8 @@
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 0 4px 20px rgba(59, 209, 211, 0.25);
+  text-decoration: none;
+  display: inline-block;
 }
 
 .ctaBtn:hover {

@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './Team.module.css';
 
 const teamMembers = [
@@ -65,7 +66,7 @@ export default function Team() {
           <p className={styles.description}>
             Behind every solution is a real person who's ready to assist you with professionalism and care. Meet our financial advisors, tech team, and service consultants.
           </p>
-          <button className={styles.ctaBtn}>Check Our Team</button>
+          <Link href="/about" className={styles.ctaBtn}>Check Our Team</Link>
         </div>
       </div>
     </section>

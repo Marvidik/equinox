@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   description: "Advanced crypto and forex investment platform.",
 };
 
+import SmartsuppChat from "@/components/SmartsuppChat";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,6 +31,7 @@ export default function RootLayout({
       <body>
         <div id="google_translate_element" style={{ display: "none" }}></div>
         {children}
+        <SmartsuppChat />
         <Script 
           src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
           strategy="afterInteractive"

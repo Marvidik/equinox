@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import styles from './Hero.module.css';
 import ChartMockup from './ChartMockup';
 
@@ -59,12 +60,12 @@ export default function Hero() {
         </div>
 
         <div className={styles.ctaGroup}>
-          <button className={styles.primaryButton}>
+          <Link href="/register" className={styles.primaryButton}>
             Get Started <span className={styles.arrow}>→</span>
-          </button>
-          <button className={styles.secondaryButton}>
+          </Link>
+          <Link href="/login" className={styles.secondaryButton}>
             Live Dashboard
-          </button>
+          </Link>
         </div>
       </div>
 

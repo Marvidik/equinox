@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import styles from './ContextualIntelligence.module.css';
 
 function getDateLabel(offset: number) {
@@ -167,9 +168,9 @@ export default function ContextualIntelligence() {
             allocation, trading risk exposure, and market signals into one coherent investment strategy.
           </p>
           
-          <button className={styles.primaryButton}>
+          <Link href="/register" className={styles.primaryButton} style={{ display: 'inline-block', textDecoration: 'none' }}>
             Start Trading Now
-          </button>
+          </Link>
         </div>
       </div>
     </section>
