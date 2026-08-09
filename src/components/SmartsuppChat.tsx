@@ -15,6 +15,7 @@ export default function SmartsuppChat() {
       {`
         var _smartsupp = _smartsupp || {};
         _smartsupp.key = '26385bee55f5cfea2d12ec3bd295d265ddc48b8f';
+        _smartsupp.themeColor = '#0f172a';
         window.smartsupp||(function(d) {
           var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
           s=d.getElementsByTagName('script')[0];c=d.createElement('script');

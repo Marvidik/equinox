@@ -30,11 +30,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div className={styles.logo}>
             <div className={styles.logoIcon}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L2 12L12 22L22 12L12 2Z" fill="#2CD4D1"/>
-                <path d="M7 12L12 7L17 12L12 17L7 12Z" fill="#ffffff"/>
+                <path d="M12 2L2 12L12 22L22 12L12 2Z" fill="#2CD4D1" />
+                <path d="M7 12L12 7L17 12L12 17L7 12Z" fill="#ffffff" />
               </svg>
             </div>
-            <span className={styles.logoText}>Equinox</span>
+            <span className={styles.logoText}>Equinox Global Assets</span>
           </div>
           <button className={styles.closeSidebarBtn} onClick={() => setMobileMenuOpen(false)}>
             <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -53,7 +53,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               My Plans
             </Link>
             <Link href="/dashboard/buy-plan" className={`${styles.navLink} ${isActive('/dashboard/buy-plan') ? styles.active : ''}`}>
-              <svg className={styles.navIcon} width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              <svg className={styles.navIcon} width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="16" /><line x1="8" y1="12" x2="16" y2="12" /></svg>
               Buy Plan
             </Link>
             <Link href="/dashboard/deposit" className={`${styles.navLink} ${isActive('/dashboard/deposit') ? styles.active : ''}`}>
@@ -126,7 +126,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </div>
           <div className={styles.headerRight}>
             <Link href="/dashboard/kyc" className={styles.kycHeaderBtn}>
-              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg>
               <span>KYC</span>
             </Link>
           </div>

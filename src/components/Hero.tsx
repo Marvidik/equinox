@@ -3,55 +3,101 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './Hero.module.css';
-import ChartMockup from './ChartMockup';
 
 const heroContent = [
   {
-    title: "Professional Wealth",
-    highlight: "Creation",
-    description: "Build wealth through our expertly curated investment opportunities spanning cryptocurrency, forex, real estate, and precious metals with proven institutional-grade strategies."
+    title: "INSTITUTIONAL GRADE",
+    highlight: "INVESTMENT STRATEGIES",
+    description: "Access premium global markets with precision-driven trading algorithms.",
+    image: "/images/heroimg2.jpg"
   },
   {
-    title: "Trade Stocks & Futures",
-    highlight: "with Precision",
-    description: "Access professional-grade stock and futures trading with real-time execution, deep liquidity, and advanced order types. Join thousands of traders achieving consistent returns.."
+    title: "EXPERT FINANCIAL",
+    highlight: "GUIDANCE",
+    description: "Navigate the complex markets with our proven institutional-grade strategies.",
+    image: "/images/heroimg1.jpg"
   },
   {
-    title: "Institutional-Grade",
-    highlight: "Investment ",
-    description: "Multi-Asset Investment Platform. We leverage advanced algorithms and human expertise to optimize your portfolio performance and deliver consistent returns."
+    title: "BUILD YOUR WEALTH",
+    highlight: "WITH CONFIDENCE",
+    description: "We leverage advanced algorithms and human expertise to optimize your portfolio.",
+    image: "/images/chart4.jpg"
   }
 ];
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('auth_token');
+    setIsLoggedIn(!!token);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setFade(false); // Start fade out
+      setFade(false);
 
       setTimeout(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % heroContent.length);
-        setFade(true); // Fade back in
-      }, 500); // Wait for fade out to complete
+        setFade(true);
+      }, 500);
 
-    }, 5000); // Change text every 5 seconds
+    }, 5000);
 
     return () => clearInterval(timer);
   }, []);
 
+  const goToSlide = (index: number) => {
+    if (index === currentIndex) return;
+    setFade(false);
+    setTimeout(() => {
+      setCurrentIndex(index);
+      setFade(true);
+    }, 500);
+  };
+
+  const nextSlide = () => {
+    setFade(false);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroContent.length);
+      setFade(true);
+    }, 500);
+  };
+
+  const prevSlide = () => {
+    setFade(false);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 1 + heroContent.length) % heroContent.length);
+      setFade(true);
+    }, 500);
+  };
+
   return (
     <div className={styles.heroSection}>
+      {heroContent.map((slide, index) => (
+        <div
+          key={index}
+          className={`${styles.bgImage} ${index === currentIndex ? styles.activeBg : ''}`}
+          style={{ backgroundImage: `url(${slide.image})` }}
+        />
+      ))}
+      <div className={styles.overlay}></div>
+
+      <button className={styles.navButton} onClick={prevSlide} style={{ left: '20px' }}>
+        &lt;
+      </button>
+
       <div className={styles.content}>
         <div className={styles.badge}>
-          <span className={styles.badgeIcon}>✦</span> Investment Platform
+          Equinox Global Assets
         </div>
 
         <div className={`${styles.textTransition} ${fade ? styles.fadeIn : styles.fadeOut}`}>
           <h1 className={styles.title}>
             {heroContent[currentIndex].title}<br />
-            <span className={styles.highlight}>{heroContent[currentIndex].highlight}</span>
+            {heroContent[currentIndex].highlight}
           </h1>
 
           <p className={styles.description}>
@@ -60,17 +106,28 @@ export default function Hero() {
         </div>
 
         <div className={styles.ctaGroup}>
-          <Link href="/register" className={styles.primaryButton}>
-            Get Started <span className={styles.arrow}>→</span>
+          <Link href={isLoggedIn ? '/dashboard' : '/login'} className={styles.primaryButton}>
+            Dashboard
           </Link>
-          <Link href="/login" className={styles.secondaryButton}>
-            Live Dashboard
+          <Link href="/about" className={styles.secondaryButton}>
+            Learn More
           </Link>
         </div>
       </div>
 
-      <div className={styles.mockupWrapper}>
-        <ChartMockup />
+      <button className={styles.navButton} onClick={nextSlide} style={{ right: '20px' }}>
+        &gt;
+      </button>
+
+      <div className={styles.sliderControls}>
+        {heroContent.map((_, index) => (
+          <button
+            key={index}
+            className={`${styles.dot} ${index === currentIndex ? styles.activeDot : ''}`}
+            onClick={() => goToSlide(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );

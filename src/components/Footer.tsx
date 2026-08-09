@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from './Footer.module.css';
 
 const Footer = () => {
@@ -6,83 +7,97 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.topSection}>
+          {/* Brand Column */}
           <div className={styles.brandColumn}>
             <div className={styles.logo}>
               <div className={styles.logoIcon}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L2 12L12 22L22 12L12 2Z" fill="#c9a227"/>
+                  <path d="M7 12L12 7L17 12L12 17L7 12Z" fill="#ffffff" opacity="0.9"/>
                 </svg>
               </div>
-              <span className={styles.brandName}>Equinox</span>
+              <div>
+                <span className={styles.brandName}>Equinox</span>
+                <span className={styles.brandSub}>Global Assets</span>
+              </div>
             </div>
-            
+
             <p className={styles.description}>
-              Ease of investing is our main focus. With powerful market analysis features and customizable portfolios, you can easily achieve the financial goals you are looking for.
+              Equinox Global Assets is a premier investment and trading platform delivering institutional-grade strategies across forex, cryptocurrency, stocks, real estate, and precious metals worldwide.
             </p>
-            
+
             <div className={styles.socialIcons}>
-              <a href="#" className={styles.socialIcon}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <Link href="/" className={styles.socialIcon} aria-label="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
-              </a>
-              <a href="#" className={styles.socialIcon}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </Link>
+              <Link href="/" className={styles.socialIcon} aria-label="Twitter/X">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
-              </a>
-              <a href="#" className={styles.socialIcon}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              </Link>
+              <Link href="/" className={styles.socialIcon} aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                 </svg>
-              </a>
+              </Link>
+              <Link href="/" className={styles.socialIcon} aria-label="Telegram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+              </Link>
             </div>
-            
+
             <div className={styles.newsletter}>
-              <p>Subscribe to Newsletter</p>
+              <p>Stay Updated with Market Insights</p>
               <div className={styles.inputGroup}>
                 <span className={styles.mailIcon}>✉</span>
-                <input type="email" placeholder="Enter Your Email Here" className={styles.input} />
+                <input type="email" placeholder="Your email address" className={styles.input} />
+                <button className={styles.subscribeBtn}>Subscribe</button>
               </div>
             </div>
           </div>
-          
+
           <div className={styles.linksGrid}>
             <div className={styles.linkColumn}>
-              <h4>Get Started</h4>
+              <h4>Investments</h4>
               <ul>
-                <li><a href="#">Service</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Affiliate Program</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><Link href="/plans">Investment Plans</Link></li>
+                <li><Link href="/register">Forex Trading</Link></li>
+                <li><Link href="/register">Crypto Portfolio</Link></li>
+                <li><Link href="/register">Real Estate</Link></li>
+                <li><Link href="/register">Precious Metals</Link></li>
               </ul>
             </div>
-            
+
             <div className={styles.linkColumn}>
-              <h4>Platform</h4>
+              <h4>Company</h4>
               <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Markets</a></li>
-                <li><a href="#">Resource Library</a></li>
-                <li><a href="#">App Design</a></li>
+                <li><Link href="/about">About Us</Link></li>
+                <li><Link href="/contact">Contact Us</Link></li>
+                <li><Link href="/faq">FAQ</Link></li>
               </ul>
             </div>
-            
+
             <div className={styles.linkColumn}>
               <h4>Legal</h4>
               <ul>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Cookie Policy</a></li>
+                <li><Link href="/contact">Terms of Service</Link></li>
+                <li><Link href="/contact">Privacy Policy</Link></li>
               </ul>
             </div>
           </div>
         </div>
-        
+
         <div className={styles.bottomSection}>
-          <div className={styles.copyright}>2024 Equinox</div>
+          <div className={styles.copyright}>
+            © 2025 Equinox Global Assets. All rights reserved. Investment involves risk; past performance is not a guarantee of future results.
+          </div>
           <div className={styles.bottomLinks}>
-            <a href="#">Twitter</a> — <a href="#">Instagram</a> — <a href="#">Facebook</a>
+            <Link href="/contact">Privacy</Link>
+            <Link href="/contact">Terms</Link>
+            <Link href="/">Sitemap</Link>
           </div>
         </div>
       </div>

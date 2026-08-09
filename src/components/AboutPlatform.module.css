@@ -1,0 +1,278 @@
+.section {
+  background: #f8fafc;
+  padding: 90px 0;
+  width: 100%;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Badge ── */
+.topBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1dbfc1;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 40px;
+}
+
+.badgeDash {
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #1dbfc1;
+  opacity: 0.6;
+}
+
+/* ══════════════════════════════════════════
+   BENTO GRID
+   Layout on desktop (1280px wide):
+   [ Hero (tall-left) ] [ Image1 (top-right) ]
+   [ Stats row (full-width mid) ]
+   [ Features (2-col) ] [ Image2 (right) ]
+══════════════════════════════════════════ */
+.bentoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 20px;
+}
+
+/* ── Cell base ── */
+.cell {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Cell Hero (headline) ── */
+.cellHero {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.heroTitle {
+  font-size: 52px;
+  font-weight: 900;
+  color: #111827;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.accent {
+  color: #1dbfc1;
+}
+
+.heroDesc {
+  font-size: 16px;
+  color: #4b5563;
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #1a2d5a;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+  box-shadow: 0 4px 15px rgba(26, 45, 90, 0.2);
+}
+
+.ctaBtn:hover {
+  background: #1dbfc1;
+  box-shadow: 0 8px 25px rgba(29, 191, 193, 0.25);
+  transform: translateY(-2px);
+}
+
+/* ── Image cells ── */
+.cellImage1 {
+  grid-column: 2;
+  grid-row: 1;
+  height: 380px;
+  border: 1px solid #e5e7eb;
+}
+
+.cellImage2 {
+  grid-column: 2;
+  grid-row: 3;
+  height: 280px;
+  border: 1px solid #e5e7eb;
+}
+
+.imgLabel {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 1;
+}
+
+.imgLabelDot {
+  width: 8px;
+  height: 8px;
+  background: #1dbfc1;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── Stats row ── */
+.cellStats {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  background: #1a2d5a;
+  padding: 36px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.statValue {
+  font-size: 36px;
+  font-weight: 900;
+  color: #1dbfc1;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Features ── */
+.cellFeatures {
+  grid-column: 1;
+  grid-row: 3;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 36px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.featureCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.featureIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.featureTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 5px;
+}
+
+.featureText {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .bentoGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .heroTitle { font-size: 42px; }
+}
+
+@media (max-width: 768px) {
+  .section { padding: 70px 0; }
+  .bentoGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .cellHero {
+    grid-column: 1;
+    grid-row: auto;
+    padding: 36px 28px;
+  }
+  .cellImage1 {
+    grid-column: 1;
+    grid-row: auto;
+    height: 260px;
+  }
+  .cellStats {
+    grid-column: 1;
+    grid-row: auto;
+    flex-wrap: wrap;
+    padding: 28px;
+    gap: 24px;
+  }
+  .statValue { font-size: 28px; }
+  .cellFeatures {
+    grid-column: 1;
+    grid-row: auto;
+    grid-template-columns: 1fr;
+    padding: 28px;
+  }
+  .cellImage2 {
+    grid-column: 1;
+    grid-row: auto;
+    height: 220px;
+  }
+  .heroTitle { font-size: 36px; }
+}

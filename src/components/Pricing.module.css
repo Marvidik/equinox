@@ -86,7 +86,7 @@
 }
 
 .cardPurple .cardHeaderArea {
-  background: linear-gradient(135deg, #6a1b9a 0%, #902cf6 100%);
+  background: linear-gradient(135deg, #1a2d5a 0%, #2a4080 100%);
 }
 
 .popularBadge {
@@ -346,7 +346,7 @@
   gap: 10px;
   width: 100%;
   padding: 15px;
-  background: #902cf6;
+  background: #1a2d5a;
   border: none;
   color: white;
   font-weight: 700;
@@ -355,14 +355,14 @@
   cursor: pointer;
   transition: all 0.2s;
   margin-top: auto;
-  box-shadow: 0 4px 15px rgba(144, 44, 246, 0.3);
+  box-shadow: 0 4px 15px rgba(26, 45, 90, 0.3);
   text-decoration: none;
   font-family: inherit;
   box-sizing: border-box;
 }
 
 .btnPurple:hover {
-  background: #7b24d4;
+  background: #152448;
 }
 
 @media (max-width: 900px) {

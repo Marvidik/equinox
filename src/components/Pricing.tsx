@@ -59,7 +59,7 @@ const plans = [
     theme: 'dark'
   },
   {
-    name: 'COOPERATE PLAN',
+    name: 'CORPERATE PLAN',
     percentage: '70',
     duration: 'AFTER 5 DAYS',
     min: '$50,000',
@@ -79,7 +79,7 @@ export default function Pricing() {
           <div className={styles.badge}>
             <span className={styles.badgeIcon}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--accent-cyan)" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
               </svg>
             </span>
             Investment Plans
@@ -97,11 +97,11 @@ export default function Pricing() {
             <div key={index} className={`${styles.card} ${plan.theme === 'accent' ? styles.cardAccent : plan.theme === 'purple' ? styles.cardPurple : styles.cardDark}`}>
               {plan.popular && (
                 <div className={styles.popularBadge}>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" /></svg>
                   RECOMMENDED CHOICE
                 </div>
               )}
-              
+
               <div className={styles.cardHeaderArea}>
                 <div className={styles.cardIcon}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle></svg>
@@ -118,14 +118,14 @@ export default function Pricing() {
               </div>
 
               <div className={styles.cardBodyArea}>
-                
+
                 <div className={styles.referenceBlock}>
                   <div className={styles.refIconWrapper}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="2" y="2" width="9" height="9" fill="#f25022"/>
-                      <rect x="13" y="2" width="9" height="9" fill="#7fba00"/>
-                      <rect x="2" y="13" width="9" height="9" fill="#00a4ef"/>
-                      <rect x="13" y="13" width="9" height="9" fill="#ffb900"/>
+                      <rect x="2" y="2" width="9" height="9" fill="#f25022" />
+                      <rect x="13" y="2" width="9" height="9" fill="#7fba00" />
+                      <rect x="2" y="13" width="9" height="9" fill="#00a4ef" />
+                      <rect x="13" y="13" width="9" height="9" fill="#ffb900" />
                     </svg>
                   </div>
                   <div className={styles.refInfo}>

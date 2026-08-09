@@ -1,10 +1,11 @@
 :root {
-  --background: #080811;
-  --foreground: #ffffff;
-  --accent-cyan: #3bd1d3;
-  --accent-purple: #902cf6;
-  --border-color: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(255, 255, 255, 0.03);
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --accent-cyan: #059669;
+  --accent-gold: #c9a227;
+  --accent-navy: #1a2d5a;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(0, 0, 0, 0.03);
 }
 
 html,
@@ -39,9 +40,9 @@ button {
   font-family: inherit;
 }
 
-/* Push content below fixed navbar */
+/* Push content below fixed two-tier navbar (topBar ~54px + navBar ~54px = 108px) */
 main {
-  padding-top: 80px;
+  padding-top: 108px;
 }
 
 /* Google Translate Widget: hide the annoying banner */
@@ -56,10 +57,10 @@ body {
 .goog-te-gadget { display: none !important; }
 
 /* ─── Global Responsive ─── */
-@media (max-width: 768px) {
-  main { padding-top: 72px; }
+@media (max-width: 900px) {
+  main { padding-top: 108px; }
 }
 
 @media (max-width: 480px) {
-  main { padding-top: 65px; }
+  main { padding-top: 100px; }
 }
