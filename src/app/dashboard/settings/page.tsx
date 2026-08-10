@@ -397,7 +397,7 @@ export default function SettingsPage() {
                   )}
                   {passSaved && (
                     <div className={styles.successBox}>
-                      <svg width="16" height="16" fill="none" stroke="#059669" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                      <svg width="16" height="16" fill="none" stroke="#1A9E8C" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                       Password updated successfully!
                     </div>
                   )}

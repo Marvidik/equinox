@@ -12,7 +12,7 @@ const Footer = () => {
             <div className={styles.logo}>
               <div className={styles.logoIcon}>
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2L2 12L12 22L22 12L12 2Z" fill="#c9a227"/>
+                  <path d="M12 2L2 12L12 22L22 12L12 2Z" fill="#F47C1F"/>
                   <path d="M7 12L12 7L17 12L12 17L7 12Z" fill="#ffffff" opacity="0.9"/>
                 </svg>
               </div>

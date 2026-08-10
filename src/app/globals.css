@@ -1,9 +1,9 @@
 :root {
   --background: #f8fafc;
   --foreground: #0f172a;
-  --accent-cyan: #059669;
-  --accent-gold: #c9a227;
-  --accent-navy: #1a2d5a;
+  --accent-cyan: #1A9E8C;
+  --accent-gold: #F47C1F;
+  --accent-navy: #1A9E8C; /* repurposed to teal primary */
   --border-color: rgba(0, 0, 0, 0.1);
   --glass-bg: rgba(0, 0, 0, 0.03);
 }
@@ -18,7 +18,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  font-family: var(--font-plus-jakarta-sans), var(--font-inter), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
@@ -58,9 +58,9 @@ body {
 
 /* ─── Global Responsive ─── */
 @media (max-width: 900px) {
-  main { padding-top: 108px; }
+  main { padding-top: 66px; }
 }
 
 @media (max-width: 480px) {
-  main { padding-top: 100px; }
+  main { padding-top: 66px; }
 }

@@ -52,7 +52,7 @@ const features = [
     ),
     label: 'Performance Based',
     desc: 'Rewards are tied to investment performance and portfolio milestones.',
-    color: '#059669', // cyan/green
+    color: '#1A9E8C', // cyan/green
   },
   {
     icon: (
@@ -62,7 +62,7 @@ const features = [
     ),
     label: 'Exclusive Access',
     desc: 'Premium tier investors gain access to exclusive opportunities.',
-    color: '#1a2d5a', // navy
+    color: '#1A9E8C', // navy
   },
   {
     icon: (
@@ -73,7 +73,7 @@ const features = [
     ),
     label: 'Recognition Program',
     desc: 'Celebrating our most committed and successful investors.',
-    color: '#c9a227', // gold
+    color: '#F47C1F', // gold
   },
 ];
 

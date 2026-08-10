@@ -148,7 +148,7 @@ export default function Dashboard() {
           <div className={styles.assetList}>
             <div className={styles.assetItem}>
               <div className={styles.assetBrand}>
-                <svg width="20" height="20" fill="none" stroke="#059669" strokeWidth="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                <svg width="20" height="20" fill="none" stroke="#1A9E8C" strokeWidth="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
               </div>
               <span className={styles.assetName}>Total Profit</span>
               <span className={styles.successText}>{loading ? '$...' : formatCurrency(dashboardData?.total_profit || 0)}</span>
@@ -196,11 +196,11 @@ export default function Dashboard() {
                     <tr key={i} style={{ borderBottom: '1px solid #f3f4f6', fontSize: '0.95rem' }}>
                       <td style={{ padding: '12px 8px', fontWeight: 600 }}>{plan.plan_name}</td>
                       <td style={{ padding: '12px 8px', fontWeight: 700 }}>{formatCurrency(plan.amount)}</td>
-                      <td style={{ padding: '12px 8px', color: '#059669', fontWeight: 600 }}>{formatCurrency(plan.profit_earned)}</td>
+                      <td style={{ padding: '12px 8px', color: '#1A9E8C', fontWeight: 600 }}>{formatCurrency(plan.profit_earned)}</td>
                       <td style={{ padding: '12px 8px' }}>
                         <span style={{ 
                           background: plan.is_active ? '#ecfdf5' : '#fff1f2',
-                          color: plan.is_active ? '#059669' : '#dc2626',
+                          color: plan.is_active ? '#1A9E8C' : '#dc2626',
                           padding: '4px 10px',
                           borderRadius: '20px',
                           fontSize: '0.8rem',

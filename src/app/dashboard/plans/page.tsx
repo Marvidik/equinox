@@ -51,7 +51,7 @@ export default function PlansPage() {
       <div className={styles.tableCard}>
         <div className={styles.cardHeader}>
           <div className={styles.headerTitleWrap}>
-            <svg width="22" height="22" fill="none" stroke="#059669" strokeWidth="2.5" viewBox="0 0 24 24">
+            <svg width="22" height="22" fill="none" stroke="#1A9E8C" strokeWidth="2.5" viewBox="0 0 24 24">
               <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
               <polyline points="17 6 23 6 23 12"/>
             </svg>
@@ -91,7 +91,7 @@ export default function PlansPage() {
                     <td className={styles.planAmount}>${Number(plan.amount).toLocaleString('en', { minimumFractionDigits: 2 })}</td>
                     <td className={styles.planProfit}>${Number(plan.profit_earned || 0).toLocaleString('en', { minimumFractionDigits: 2 })}</td>
                     <td>
-                      <span className={styles.statusBadge} style={{ background: plan.is_active ? '#ecfdf5' : '#fff1f2', color: plan.is_active ? '#059669' : '#dc2626' }}>
+                      <span className={styles.statusBadge} style={{ background: plan.is_active ? '#ecfdf5' : '#fff1f2', color: plan.is_active ? '#1A9E8C' : '#dc2626' }}>
                         {plan.is_active ? 'Active' : 'Inactive'}
                       </span>
                     </td>

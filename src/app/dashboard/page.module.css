@@ -337,7 +337,7 @@
 
 .statBadgeSuccess {
   background-color: #ecfdf5;
-  color: #059669;
+  color: #1A9E8C;
   padding: 0.3rem 0.6rem;
   border-radius: 6px;
   font-size: 0.85rem;
@@ -433,7 +433,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
-  background: radial-gradient(circle, transparent 60%, rgba(59, 209, 211, 0.1) 60%), conic-gradient(#3bd1d3 0% 60%, #10b981 60% 85%, #ef4444 85% 100%);
+  background: radial-gradient(circle, transparent 60%, rgba(59, 209, 211, 0.1) 60%), conic-gradient(#3bd1d3 0% 60%, #22c5a8 60% 85%, #ef4444 85% 100%);
   border-radius: 50%;
   width: 200px;
   margin: 0 auto 1.5rem;
@@ -506,7 +506,7 @@
 }
 
 .successText {
-  color: #059669;
+  color: #1A9E8C;
   font-weight: 600;
 }
 

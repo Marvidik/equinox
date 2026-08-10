@@ -18,7 +18,7 @@
   gap: 12px;
   font-size: 13px;
   font-weight: 700;
-  color: #1dbfc1;
+  color: #1A9E8C;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin-bottom: 40px;
@@ -28,7 +28,7 @@
   display: block;
   width: 30px;
   height: 2px;
-  background: #1dbfc1;
+  background: #1A9E8C;
   opacity: 0.6;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .accent {
-  color: #1dbfc1;
+  color: #1A9E8C;
 }
 
 .heroDesc {
@@ -91,7 +91,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #1a2d5a;
+  background: #1A9E8C;
   color: #ffffff;
   font-size: 15px;
   font-weight: 700;
@@ -100,12 +100,12 @@
   text-decoration: none;
   transition: all 0.3s ease;
   align-self: flex-start;
-  box-shadow: 0 4px 15px rgba(26, 45, 90, 0.2);
+  box-shadow: 0 4px 15px rgba(26, 158, 140, 0.2);
 }
 
 .ctaBtn:hover {
-  background: #1dbfc1;
-  box-shadow: 0 8px 25px rgba(29, 191, 193, 0.25);
+  background: #1A9E8C;
+  box-shadow: 0 8px 25px rgba(26, 158, 140, 0.25);
   transform: translateY(-2px);
 }
 
@@ -144,7 +144,7 @@
 .imgLabelDot {
   width: 8px;
   height: 8px;
-  background: #1dbfc1;
+  background: #1A9E8C;
   border-radius: 50%;
   flex-shrink: 0;
   animation: pulse 2s infinite;
@@ -159,7 +159,7 @@
 .cellStats {
   grid-column: 1 / -1;
   grid-row: 2;
-  background: #1a2d5a;
+  background: transparent;
   padding: 36px 48px;
   display: flex;
   align-items: center;
@@ -177,14 +177,14 @@
 .statValue {
   font-size: 36px;
   font-weight: 900;
-  color: #1dbfc1;
+  color: #1A9E8C;
   line-height: 1;
 }
 
 .statLabel {
   font-size: 12px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.6);
+  color: #4b5563;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -258,9 +258,10 @@
   .cellStats {
     grid-column: 1;
     grid-row: auto;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     padding: 28px;
-    gap: 24px;
+    gap: 24px 16px;
   }
   .statValue { font-size: 28px; }
   .cellFeatures {

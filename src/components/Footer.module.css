@@ -1,11 +1,10 @@
 .footer {
   width: 100%;
-  background-color: #0f1c36;
+  background-color: #2a2a2a;
   color: #d1d5db;
   padding: 80px 0 0;
   position: relative;
   z-index: 2;
-  border-top: 4px solid #c9a227;
 }
 
 .container {
@@ -52,7 +51,7 @@
 .brandSub {
   font-size: 0.72rem;
   font-weight: 600;
-  color: #c9a227;
+  color: rgba(255, 255, 255, 0.5);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   display: block;
@@ -85,9 +84,9 @@
 }
 
 .socialIcon:hover {
-  background: #c9a227;
-  color: #0f1c36;
-  border-color: #c9a227;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.25);
   transform: translateY(-2px);
 }
 
@@ -109,7 +108,7 @@
 }
 
 .inputGroup:focus-within {
-  border-color: #c9a227;
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 .mailIcon {
@@ -133,9 +132,9 @@
 }
 
 .subscribeBtn {
-  background: #c9a227;
-  color: #0f1c36;
-  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.2);
   padding: 0.6rem 1rem;
   border-radius: 6px;
   font-size: 0.8rem;
@@ -146,7 +145,7 @@
 }
 
 .subscribeBtn:hover {
-  background: #b8911f;
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .linksGrid {
@@ -162,7 +161,7 @@
   color: #ffffff;
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #c9a227;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
   display: inline-block;
 }
 
@@ -187,7 +186,7 @@
 
 .linkColumn a::before {
   content: '›';
-  color: #c9a227;
+  color: rgba(255,255,255,0.4);
   font-size: 1.1rem;
   line-height: 1;
 }
@@ -227,7 +226,7 @@
 }
 
 .bottomLinks a:hover {
-  color: #c9a227;
+  color: #ffffff;
 }
 
 @media (max-width: 968px) {

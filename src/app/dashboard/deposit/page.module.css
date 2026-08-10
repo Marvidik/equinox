@@ -498,7 +498,7 @@
 }
 
 .copyBtn:hover { background: #e2e8f0; border-color: #3bd1d3; color: #3bd1d3; }
-.copyBtnSuccess { border-color: #10b981 !important; color: #10b981 !important; background: #ecfdf5 !important; }
+.copyBtnSuccess { border-color: #22c5a8 !important; color: #22c5a8 !important; background: #ecfdf5 !important; }
 
 .networkTag {
   font-size: 0.72rem;
@@ -526,7 +526,7 @@
 }
 
 .dropZone:hover { border-color: #3bd1d3; background: rgba(59,209,211,0.02); }
-.dropZoneDone { border-color: #10b981 !important; background: rgba(16,185,129,0.04) !important; }
+.dropZoneDone { border-color: #22c5a8 !important; background: rgba(16,185,129,0.04) !important; }
 .dropZone p { font-size: 0.9rem; font-weight: 600; color: #4b5563; margin: 0; }
 .dropZone span { font-size: 0.75rem; color: #94a3b8; }
 

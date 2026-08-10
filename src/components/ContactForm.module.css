@@ -116,7 +116,7 @@
   margin-bottom: 1.5rem;
 }
 
-.greenIcon { background: #10b981; color: white; }
+.greenIcon { background: #22c5a8; color: white; }
 .orangeIcon { background: #f59e0b; color: white; }
 .blueIcon { background: #475569; color: white; }
 
@@ -170,7 +170,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #10b981;
+  color: #22c5a8;
   font-size: 0.85rem;
   font-weight: 500;
 }
@@ -306,7 +306,7 @@
 .pinDot {
   width: 20px;
   height: 20px;
-  background: #10b981;
+  background: #22c5a8;
   border-radius: 50%;
   border: 4px solid white;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);

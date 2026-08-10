@@ -17,13 +17,13 @@
 .headerBadge {
   width: 52px;
   height: 52px;
-  background: linear-gradient(135deg, rgba(5,150,105,0.15), rgba(5,150,105,0.05));
-  border: 1.5px solid rgba(5,150,105,0.3);
+  background: linear-gradient(135deg, rgba(26,158,140,0.15), rgba(26,158,140,0.05));
+  border: 1.5px solid rgba(26,158,140,0.3);
   border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #059669;
+  color: #1A9E8C;
   flex-shrink: 0;
 }
 
@@ -65,7 +65,7 @@
   top: 0; left: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg, #059669, #10b981);
+  background: linear-gradient(180deg, #1A9E8C, #22c5a8);
   border-radius: 2px;
 }
 
@@ -126,8 +126,8 @@
 }
 
 .showEntries select:focus {
-  border-color: #059669;
-  box-shadow: 0 0 0 3px rgba(5,150,105,0.1);
+  border-color: #1A9E8C;
+  box-shadow: 0 0 0 3px rgba(26,158,140,0.1);
 }
 
 .searchBox {
@@ -143,9 +143,9 @@
 }
 
 .searchBox:focus-within {
-  border-color: #059669;
+  border-color: #1A9E8C;
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(5,150,105,0.1);
+  box-shadow: 0 0 0 3px rgba(26,158,140,0.1);
 }
 
 .searchBox input {
@@ -230,9 +230,9 @@
   border-radius: 50px;
   font-size: 0.78rem;
   font-weight: 700;
-  background: rgba(5,150,105,0.1);
-  color: #059669;
-  border: 1px solid rgba(5,150,105,0.2);
+  background: rgba(26,158,140,0.1);
+  color: #1A9E8C;
+  border: 1px solid rgba(26,158,140,0.2);
   letter-spacing: 0.01em;
 }
 
@@ -272,8 +272,8 @@
 }
 
 .pageBtn:hover:not(:disabled) {
-  border-color: #059669;
-  color: #059669;
+  border-color: #1A9E8C;
+  color: #1A9E8C;
 }
 
 .pageBtn:disabled {

@@ -374,7 +374,7 @@
   cursor: not-allowed;
 }
 
-.otpSent { background: rgba(5,150,105,0.07); color: #059669; border-color: #059669; }
+.otpSent { background: rgba(26,158,140,0.07); color: #1A9E8C; border-color: #1A9E8C; }
 
 .hint {
   font-size: 0.78rem;

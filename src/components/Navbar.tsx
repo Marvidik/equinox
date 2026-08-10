@@ -70,8 +70,8 @@ export default function Navbar() {
           <div className={styles.topBarBrand}>
             <div className={styles.logoIcon}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L2 12L12 22L22 12L12 2Z" fill="#c9a227" stroke="#c9a227" strokeWidth="1" strokeLinejoin="round"/>
-                <path d="M7 12L12 7L17 12L12 17L7 12Z" fill="#1a2d5a" strokeWidth="1" strokeLinejoin="round"/>
+                <path d="M12 2L2 12L12 22L22 12L12 2Z" fill="#F47C1F" stroke="#F47C1F" strokeWidth="1" strokeLinejoin="round"/>
+                <path d="M7 12L12 7L17 12L12 17L7 12Z" fill="#1A9E8C" strokeWidth="1" strokeLinejoin="round"/>
               </svg>
             </div>
             <div>
@@ -95,6 +95,12 @@ export default function Navbar() {
               </div>
             </div>
           </div>
+          {/* Mobile Hamburger (moved to top bar) */}
+          <button className={styles.hamburger} onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
+            <span className={`${styles.bar} ${mobileOpen ? styles.barTop : ''}`}></span>
+            <span className={`${styles.bar} ${mobileOpen ? styles.barMid : ''}`}></span>
+            <span className={`${styles.bar} ${mobileOpen ? styles.barBot : ''}`}></span>
+          </button>
         </div>
       </div>
 
@@ -152,13 +158,6 @@ export default function Navbar() {
               )}
             </div>
           </div>
-
-          {/* Mobile Hamburger */}
-          <button className={styles.hamburger} onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
-            <span className={`${styles.bar} ${mobileOpen ? styles.barTop : ''}`}></span>
-            <span className={`${styles.bar} ${mobileOpen ? styles.barMid : ''}`}></span>
-            <span className={`${styles.bar} ${mobileOpen ? styles.barBot : ''}`}></span>
-          </button>
         </nav>
       </div>
 
@@ -170,8 +169,8 @@ export default function Navbar() {
         <div className={styles.drawerHeader}>
           <Link href="/" className={styles.drawerLogo} onClick={() => setMobileOpen(false)}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L2 12L12 22L22 12L12 2Z" fill="#c9a227"/>
-              <path d="M7 12L12 7L17 12L12 17L7 12Z" fill="#1a2d5a"/>
+              <path d="M12 2L2 12L12 22L22 12L12 2Z" fill="#F47C1F"/>
+              <path d="M7 12L12 7L17 12L12 17L7 12Z" fill="#1A9E8C"/>
             </svg>
             <span>Equinox Global Assets</span>
           </Link>

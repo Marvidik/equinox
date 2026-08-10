@@ -29,7 +29,7 @@ const activities: { name: string; country: string; action: string; amount: strin
 
 const iconByType = (type: ActivityType) => {
   if (type === 'deposit') return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1dbfc1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A9E8C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="5" width="20" height="14" rx="2" /><line x1="2" y1="10" x2="22" y2="10" />
     </svg>
   );
@@ -39,22 +39,22 @@ const iconByType = (type: ActivityType) => {
     </svg>
   );
   if (type === 'profit') return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c5a8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />
     </svg>
   );
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a227" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F47C1F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="8" r="6" /><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
     </svg>
   );
 };
 
 const colorByType = (type: ActivityType) => {
-  if (type === 'deposit') return '#1dbfc1';
+  if (type === 'deposit') return '#1A9E8C';
   if (type === 'withdrawal') return '#f59e0b';
-  if (type === 'profit') return '#10b981';
-  return '#c9a227';
+  if (type === 'profit') return '#22c5a8';
+  return '#F47C1F';
 };
 
 function getTime() {

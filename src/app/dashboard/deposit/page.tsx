@@ -140,8 +140,8 @@ export default function DepositPage() {
                 <input type="file" id="proof-input" hidden onChange={e => setProof(e.target.files?.[0] || null)} accept="image/*" />
                 {proof ? (
                   <>
-                    <svg width="32" height="32" fill="none" stroke="#10b981" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>
-                    <p style={{ color: '#059669' }}>{proof.name}</p>
+                    <svg width="32" height="32" fill="none" stroke="#22c5a8" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>
+                    <p style={{ color: '#1A9E8C' }}>{proof.name}</p>
                   </>
                 ) : (
                   <>

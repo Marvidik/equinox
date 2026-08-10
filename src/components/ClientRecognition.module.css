@@ -22,8 +22,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(26, 45, 90, 0.05);
-  border: 1px solid rgba(26, 45, 90, 0.1);
+  background: rgba(26, 158, 140, 0.05);
+  border: 1px solid rgba(26, 158, 140, 0.1);
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 13px;
@@ -169,7 +169,7 @@
 
 /* ── CTA Banner ── */
 .ctaBanner {
-  background: var(--accent-navy);
+  background: #1A9E8C;
   border-radius: 20px;
   padding: 48px;
   display: flex;
@@ -178,18 +178,6 @@
   gap: 32px;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.ctaBanner::before {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 40%;
-  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.1));
-  pointer-events: none;
 }
 
 .ctaContent {
@@ -215,23 +203,25 @@
 
 .ctaBtn {
   display: inline-block;
-  background: var(--accent-gold);
-  color: var(--accent-navy);
+  background: #F47C1F;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 700;
-  padding: 16px 32px;
-  border-radius: 8px;
+  padding: 16px 36px;
+  border-radius: 10px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   white-space: nowrap;
   position: relative;
   z-index: 1;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.01em;
 }
 
 .ctaBtn:hover {
+  background: #d46a10;
   transform: translateY(-2px);
-  background: #e0b530;
-  box-shadow: 0 8px 24px rgba(201, 162, 39, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* ── Responsive ── */

@@ -125,7 +125,7 @@
 }
 
 .statIcon[data-color="cyan"]   { background: rgba(59,209,211,0.1);  color: #3bd1d3; }
-.statIcon[data-color="green"]  { background: rgba(5,150,105,0.1);   color: #059669; }
+.statIcon[data-color="green"]  { background: rgba(26,158,140,0.1);   color: #1A9E8C; }
 .statIcon[data-color="purple"] { background: rgba(124,58,237,0.1);  color: #7c3aed; }
 
 .statLabel { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin: 0 0 0.25rem; }
@@ -194,8 +194,8 @@
 .copyBtn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59,209,211,0.4); }
 
 .copyBtnDone {
-  background: linear-gradient(135deg, #059669, #10b981) !important;
-  box-shadow: 0 4px 14px rgba(5,150,105,0.3) !important;
+  background: linear-gradient(135deg, #1A9E8C, #22c5a8) !important;
+  box-shadow: 0 4px 14px rgba(26,158,140,0.3) !important;
   color: #fff !important;
 }
 
@@ -228,9 +228,9 @@
 .idChip:hover { background: rgba(59,209,211,0.14); transform: scale(1.02); }
 
 .idChipDone {
-  background: rgba(5,150,105,0.08) !important;
-  border-color: rgba(5,150,105,0.25) !important;
-  color: #059669 !important;
+  background: rgba(26,158,140,0.08) !important;
+  border-color: rgba(26,158,140,0.25) !important;
+  color: #1A9E8C !important;
 }
 
 /* Social share */
@@ -458,7 +458,7 @@
   font-weight: 700;
 }
 
-.status_active   { background: rgba(5,150,105,0.1);  color: #059669; border: 1px solid rgba(5,150,105,0.2); }
+.status_active   { background: rgba(26,158,140,0.1);  color: #1A9E8C; border: 1px solid rgba(26,158,140,0.2); }
 .status_inactive { background: rgba(107,114,128,0.1); color: #6b7280; border: 1px solid rgba(107,114,128,0.2); }
 .status_pending  { background: rgba(245,158,11,0.1);  color: #d97706; border: 1px solid rgba(245,158,11,0.2); }
 

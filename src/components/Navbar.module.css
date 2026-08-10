@@ -38,7 +38,7 @@
 .brandName {
   font-size: 1.4rem;
   font-weight: 900;
-  color: #1dbfc1;
+  color: #1A9E8C;
   display: block;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -47,7 +47,7 @@
 .brandSub {
   font-size: 0.65rem;
   font-weight: 800;
-  color: #c9a227;
+  color: #F47C1F;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   display: block;
@@ -67,7 +67,7 @@
 }
 
 .topContact svg {
-  color: #c9a227;
+  color: #F47C1F;
   flex-shrink: 0;
   width: 16px;
   height: 16px;
@@ -87,7 +87,7 @@
   display: block;
   font-size: 0.82rem;
   font-weight: 700;
-  color: #1a2d5a;
+  color: #1A9E8C;
   line-height: 1.2;
 }
 
@@ -100,7 +100,7 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: #1a2d5a;
+  background: #1A9E8C;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
@@ -138,12 +138,12 @@
 .navLink:hover {
   background: rgba(255, 255, 255, 0.07);
   color: #ffffff;
-  border-bottom-color: #c9a227;
+  border-bottom-color: #F47C1F;
 }
 
 .navLink.active {
   color: #ffffff;
-  border-bottom-color: #c9a227;
+  border-bottom-color: #F47C1F;
   background: rgba(255, 255, 255, 0.05);
 }
 
@@ -184,11 +184,11 @@
 }
 
 .registerBtn {
-  background: #c9a227;
-  color: #1a2d5a;
+  background: #F47C1F;
+  color: #ffffff;
   text-decoration: none;
   font-size: 0.88rem;
-  font-weight: 800;
+  font-weight: 700;
   padding: 0.5rem 1.3rem;
   border-radius: 6px;
   transition: all 0.2s;
@@ -196,7 +196,7 @@
 }
 
 .registerBtn:hover {
-  background: #e0b530;
+  background: #d46a10;
   transform: translateY(-1px);
 }
 
@@ -209,9 +209,9 @@
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  background: rgba(201, 162, 39, 0.15);
-  color: #f5e49c;
-  border: 1.5px solid #c9a227;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
   padding: 0.45rem 0.9rem;
   border-radius: 6px;
   font-size: 0.85rem;
@@ -222,21 +222,14 @@
 }
 
 .langBtn:hover {
-  gap: 6px;
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-.langBtn:hover .langName {
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
 .langName {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #1f2937;
+  color: #ffffff;
 }
 
 .flag {
@@ -247,7 +240,7 @@
 .chevron {
   width: 14px;
   height: 14px;
-  color: #6b7280;
+  color: rgba(255, 255, 255, 0.7);
   transition: transform 0.2s;
   flex-shrink: 0;
 }
@@ -314,7 +307,7 @@
 
 .checkIcon {
   margin-left: auto;
-  color: #059669;
+  color: #1A9E8C;
 }
 
 /* ─── Hamburger ─── */
@@ -331,9 +324,9 @@
 
 .bar {
   display: block;
-  width: 22px;
+  width: 24px;
   height: 2px;
-  background: #ffffff;
+  background: #111827; /* Dark for white bg */
   border-radius: 2px;
   transition: all 0.3s ease;
   transform-origin: center;
@@ -387,7 +380,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
-  background: #1a2d5a;
+  background: #1A9E8C;
 }
 
 .drawerLogo {
@@ -435,14 +428,14 @@
 
 .drawerLink:hover {
   background: #f1f5f9;
-  color: #1a2d5a;
-  border-left-color: #c9a227;
+  color: #1A9E8C;
+  border-left-color: #F47C1F;
 }
 
 .drawerLinkActive {
-  color: #1a2d5a !important;
-  background: rgba(26, 45, 90, 0.06);
-  border-left-color: #c9a227;
+  color: #1A9E8C !important;
+  background: rgba(26, 158, 140, 0.06);
+  border-left-color: #F47C1F;
   font-weight: 700;
 }
 
@@ -467,10 +460,10 @@
 .drawerRegisterBtn {
   text-decoration: none;
   display: block;
-  background: #c9a227;
-  color: #1a2d5a;
+  background: #F47C1F;
+  color: #ffffff;
   font-size: 0.95rem;
-  font-weight: 800;
+  font-weight: 700;
   padding: 0.8rem;
   border-radius: 10px;
   text-align: center;
@@ -479,7 +472,7 @@
 }
 
 .drawerRegisterBtn:hover {
-  background: #e0b530;
+  background: #d46a10;
 }
 
 /* ─── Drawer Language Section ─── */
@@ -565,7 +558,7 @@
 .drawerLangActive::after {
   content: '✓';
   margin-left: auto;
-  color: #c9a227;
+  color: #F47C1F;
   font-weight: 800;
 }
 
@@ -581,11 +574,7 @@
 }
 
 @media (max-width: 900px) {
-  .navLinks {
-    display: none;
-  }
-
-  .actions {
+  .navbarWrapper {
     display: none;
   }
 
@@ -593,25 +582,13 @@
     display: flex;
   }
 
-  /* On mobile — hide all contacts EXCEPT the phone */
-  .topBarContacts .topContact:not(:first-child) {
+  /* On mobile — hide ALL contact info, keep just the brand */
+  .topBarContacts {
     display: none;
   }
 
   .topBarInner {
-    padding: 0.5rem 1rem;
-  }
-
-  .topBarContacts {
-    gap: 0;
-  }
-
-  .topContactLabel {
-    display: none;
-  }
-
-  .topContactValue {
-    font-size: 0.78rem;
+    padding: 1.1rem 1.5rem;
   }
 }
 

@@ -12,7 +12,7 @@ const features = [
     ),
     title: 'Diversified Strategies',
     text: 'Expert-managed portfolios across crypto, forex, and real estate with optimized risk-adjusted returns.',
-    color: '#1dbfc1',
+    color: '#1A9E8C',
   },
   {
     icon: (
@@ -23,7 +23,7 @@ const features = [
     ),
     title: 'Transparent Operations',
     text: 'Real-time portfolio tracking and comprehensive reporting you can access 24/7 from any device.',
-    color: '#c9a227',
+    color: '#F47C1F',
   },
   {
     icon: (
@@ -33,7 +33,7 @@ const features = [
     ),
     title: 'Risk Management',
     text: 'Advanced hedging strategies and position sizing algorithms to protect and grow your capital.',
-    color: '#1a2d5a',
+    color: '#1A9E8C',
   },
   {
     icon: (
@@ -43,7 +43,7 @@ const features = [
     ),
     title: '24/7 Support',
     text: 'Dedicated financial advisors and support team available around the clock, globally.',
-    color: '#059669',
+    color: '#1A9E8C',
   },
 ];
 

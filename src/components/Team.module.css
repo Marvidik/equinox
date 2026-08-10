@@ -23,8 +23,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(29, 191, 193, 0.1);
-  color: #1dbfc1;
+  background: rgba(26, 158, 140, 0.1);
+  color: #1A9E8C;
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 13px;
@@ -32,7 +32,7 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 20px;
-  border: 1px solid rgba(29, 191, 193, 0.2);
+  border: 1px solid rgba(26, 158, 140, 0.2);
 }
 
 .badgeIcon {
@@ -55,12 +55,14 @@
   line-height: 1.6;
 }
 
-/* ── Grid ── */
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   margin-bottom: 60px;
+  max-width: 1050px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card {
@@ -74,8 +76,8 @@
 
 .card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(29, 191, 193, 0.15);
-  border-color: rgba(29, 191, 193, 0.3);
+  box-shadow: 0 15px 35px rgba(26, 158, 140, 0.15);
+  border-color: rgba(26, 158, 140, 0.3);
 }
 
 .imageWrapper {
@@ -117,7 +119,7 @@
 .socialIcon {
   width: 36px;
   height: 36px;
-  background: #1dbfc1;
+  background: #1A9E8C;
   color: #ffffff;
   border-radius: 50%;
   display: flex;
@@ -146,7 +148,7 @@
 .role {
   font-size: 14px;
   font-weight: 600;
-  color: #1dbfc1;
+  color: #1A9E8C;
 }
 
 /* ── Footer ── */
@@ -158,7 +160,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #1dbfc1;
+  background: #1A9E8C;
   color: #ffffff;
   font-size: 16px;
   font-weight: 700;
@@ -166,19 +168,27 @@
   border-radius: 8px;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(29, 191, 193, 0.2);
+  box-shadow: 0 4px 15px rgba(26, 158, 140, 0.2);
 }
 
 .ctaBtn:hover {
   background: #159b9d;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(29, 191, 193, 0.3);
+  box-shadow: 0 8px 25px rgba(26, 158, 140, 0.3);
 }
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
+    max-width: 700px;
+  }
+  /* Center the 3rd odd card by spanning it, or let flex do it. Grid span: */
+  .card:nth-child(3) {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    margin: 0 auto;
+    width: calc(100% - 15px); /* Matches gap half */
   }
 }
 
@@ -187,6 +197,11 @@
     grid-template-columns: 1fr;
     max-width: 360px;
     margin: 0 auto 60px;
+  }
+  .card:nth-child(3) {
+    grid-column: auto;
+    max-width: 100%;
+    width: 100%;
   }
   .title {
     font-size: 32px;

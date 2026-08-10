@@ -12,6 +12,7 @@ import ClientRecognition from "@/components/ClientRecognition";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import LiveActivityToast from "@/components/LiveActivityToast";
+import WhyChooseUs from "@/components/WhyChooseUs";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <Hero />
         <TradingViewTicker />
         <AboutPlatform />
+        <WhyChooseUs />
         <InvestmentJourney />
         <TradingViewChart />
         <Pricing />

@@ -69,7 +69,7 @@
   height: 24px;
   border-radius: 50%;
   background: rgba(5, 150, 105, 0.1);
-  color: #059669;
+  color: #1A9E8C;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,13 +99,13 @@
   text-decoration: none;
   transition: all 0.3s ease;
   display: inline-block;
-  box-shadow: 0 4px 15px rgba(26, 45, 90, 0.15);
+  box-shadow: 0 4px 15px rgba(26, 158, 140, 0.15);
 }
 
 .exploreBtn:hover {
   background: #112040;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(26, 45, 90, 0.25);
+  box-shadow: 0 8px 25px rgba(26, 158, 140, 0.25);
 }
 
 .faqLink {

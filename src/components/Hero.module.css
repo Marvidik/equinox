@@ -1,8 +1,10 @@
+/* ══════════════════════════
+   HERO SECTION
+══════════════════════════ */
 .heroSection {
   position: relative;
   width: 100vw;
-  height: 80vh;
-  min-height: 600px;
+  min-height: 88vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,184 +15,316 @@
 
 .bgImage {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transform: scale(1.1);
+  transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out, filter 1.2s ease-in-out;
   z-index: 1;
 }
 
 .activeBg {
   opacity: 1;
+  transform: scale(1);
+  transition: opacity 1.2s ease-in-out, transform 8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.55) 55%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
   z-index: 2;
 }
 
+/* ── Inner layout ── */
 .content {
   position: relative;
   z-index: 3;
   max-width: 1200px;
   width: 100%;
-  padding: 0 4rem;
-  color: white;
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  grid-template-rows: 1fr auto;
+  gap: 0 3rem;
+  align-items: center;
+}
+
+/* ── Left column ── */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .badge {
-  font-family: var(--font-inter), sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #c9d1d9;
-  margin-bottom: 1.5rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+  opacity: 0.75;
 }
 
 .badge::before {
   content: '';
   display: block;
-  width: 40px;
+  width: 32px;
   height: 2px;
-  background-color: var(--accent-cyan);
-}
-
-.title {
-  font-family: var(--font-plus-jakarta-sans), sans-serif;
-  font-size: 4rem;
-  line-height: 1.2;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  background: #1A9E8C;
+  flex-shrink: 0;
 }
 
 .textTransition {
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-  min-height: 200px;
+  transition: opacity 0.6s ease-in-out, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
 }
 
-.fadeIn {
-  opacity: 1;
-  transform: translateY(0);
-}
+.fadeIn  { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+.fadeOut { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); pointer-events: none; }
 
-.fadeOut {
-  opacity: 0;
-  transform: translateY(10px);
+.title {
+  font-size: 3.8rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.2rem;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.25);
 }
 
 .description {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  font-style: italic;
-  margin-bottom: 2.5rem;
-  max-width: 800px;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 2.2rem;
+  max-width: 500px;
+  font-style: normal;
 }
 
+/* ── CTA Buttons ── */
 .ctaGroup {
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .primaryButton {
-  background: #3a5b7d;
-  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #1A9E8C;
+  color: #ffffff;
   border: none;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 0.9rem 1.8rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.25s, transform 0.2s;
   text-decoration: none;
+  white-space: nowrap;
+}
+
+.primaryButton::after {
+  content: '→';
+  font-size: 1rem;
 }
 
 .primaryButton:hover {
-  background: #2a435c;
+  background: #0d7a6b;
+  transform: translateY(-1px);
 }
 
 .secondaryButton {
-  background: #222;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  padding: 0.85rem 1.75rem;
+  font-size: 0.95rem;
   font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.25s;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .secondaryButton:hover {
-  background: #000;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  transform: translateY(-1px);
 }
 
+/* ── Feature badges row (bottom full-width) ── */
+.featureRow {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.featureBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.featureIcon {
+  width: 38px;
+  height: 38px;
+  background: rgba(26, 158, 140, 0.25);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.featureText {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.3;
+}
+
+/* ── Right column — Stats grid ── */
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  padding: 1.4rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* ── Slider controls ── */
 .navButton {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  background: rgba(255, 255, 255, 0.8);
-  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  color: #333;
+  font-size: 1.2rem;
+  color: #ffffff;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.2s;
+  backdrop-filter: blur(8px);
 }
 
 .navButton:hover {
-  background: white;
+  background: rgba(26, 158, 140, 0.4);
 }
 
 .sliderControls {
   position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 1.5rem;
+  left: 4rem;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   z-index: 10;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  border: 2px solid white;
+  border: 2px solid rgba(255,255,255,0.5);
   background: transparent;
   cursor: pointer;
   padding: 0;
+  transition: all 0.2s;
 }
 
 .activeDot {
-  background: white;
+  background: #1A9E8C;
+  border-color: #1A9E8C;
+  width: 22px;
+  border-radius: 4px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    padding: 3rem 2.5rem;
+    gap: 2rem 0;
+  }
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+    grid-row: 2;
+  }
+  .featureRow {
+    grid-column: 1;
+    gap: 1.5rem;
+  }
+  .title { font-size: 2.8rem; }
 }
 
 @media (max-width: 768px) {
-  .title {
-    font-size: 2.5rem;
-  }
-  .content {
-    padding: 0 2rem;
-  }
-  .navButton {
-    display: none;
-  }
+  .heroSection { min-height: 100vh; }
+  .content { padding: 2.5rem 1.5rem; gap: 1.5rem 0; }
+  .title { font-size: 2.2rem; }
+  .statsGrid { grid-template-columns: 1fr 1fr; }
+  .navButton { display: none; }
+  .sliderControls { left: 1.5rem; }
+  .featureRow { gap: 1.2rem; }
+  .featureBadge:last-child { display: none; }
+}
+
+@media (max-width: 480px) {
+  .title { font-size: 1.9rem; }
+  .ctaGroup { flex-direction: column; align-items: flex-start; }
+  .primaryButton, .secondaryButton { width: 100%; justify-content: center; }
+  .statsGrid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .statValue { font-size: 1.5rem; }
 }

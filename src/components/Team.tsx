@@ -5,9 +5,8 @@ import styles from './Team.module.css';
 
 const teamMembers = [
   { id: 1, name: "Alexander Wright", role: "Chief Executive Officer", src: '/images/team4.jpg' },
-  { id: 2, name: "Sophia Chen", role: "Head of Trading Strategy", src: '/images/teamer.jpg' },
+  { id: 2, name: "Kathryn Lorie Smith", role: "Head of Trading Strategy", src: '/images/kary.jpeg' },
   { id: 3, name: "Marcus Johnson", role: "Lead Market Analyst", src: '/images/team2.jpg' },
-  { id: 4, name: "Elena Rodriguez", role: "Client Relations Manager", src: '/images/team1.jpg' },
 ];
 
 export default function Team() {

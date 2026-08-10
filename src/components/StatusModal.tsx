@@ -18,7 +18,7 @@ export default function StatusModal({ isOpen, onClose, type, title, message, but
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.iconWrapper} style={{ background: type === 'success' ? '#ecfdf5' : '#fff1f2' }}>
           {type === 'success' ? (
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#22c5a8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12" />
             </svg>
           ) : (
@@ -33,7 +33,7 @@ export default function StatusModal({ isOpen, onClose, type, title, message, but
         <button 
           className={styles.closeBtn} 
           onClick={onClose}
-          style={{ background: type === 'success' ? '#10b981' : '#ef4444' }}
+          style={{ background: type === 'success' ? '#22c5a8' : '#ef4444' }}
         >
           {buttonText}
         </button>

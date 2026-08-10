@@ -159,7 +159,7 @@ export default function WithdrawPage() {
           {submitted ? (
             <div className={styles.successCard}>
               <div className={styles.successIcon}>
-                <svg width="40" height="40" fill="none" stroke="#059669" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>
+                <svg width="40" height="40" fill="none" stroke="#1A9E8C" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>
               </div>
               <h3>Withdrawal Request Submitted!</h3>
               <p>Your request is being processed. You will receive a confirmation to your email within 24–48 hours.</p>
